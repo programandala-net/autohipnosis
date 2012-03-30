@@ -1,0 +1,16 @@
+= Autohipnosis
+:revdate: 2016-07-20
+
+_Autohipnosis_ is an experimental text based game, in Spanish, written
+in http://forth-standard.org[Forth] with
+http://gnu.org/software/gforth[Gforth].
+
+The project started on 2011-12-13.  On 2016-07-20 a Git repository was
+created from the development backups, in order to resume the
+development.
+
+The home page of the project is
+<http://programandala.net/es.programa.autohipnosis.html>
+(only in Spanish).
+
+// More details in the link:README.es.adoc[Spanish README].
