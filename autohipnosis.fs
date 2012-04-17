@@ -19,14 +19,22 @@
 
 \ Información sobre juegos conversacionales:
 \ http://caad.es
+ 
+\ }}} ##########################################################
+\ Averiguar el sistema Forth {{{
+
+[defined] ficl-set-current DUP
+CONSTANT ficl?
+CONSTANT [ficl?] IMMEDIATE
+
+S" gforth" ENVIRONMENT? DUP
+[IF]  NIP NIP  [THEN]  DUP 
+CONSTANT gforth?
+CONSTANT [gforth?] IMMEDIATE
 
 \ }}} ##########################################################
 \ Herramientas {{{
 
-: \eof ( -- )
-  \ Ignora el resto del fichero.
-  source-id  if  begin  refill 0=  until  then
-  ;
 : show  ( -- )  cr .s  ;
 : wait  ( -- )  key drop  ;
 : show...  ( -- )  show wait  ;
@@ -160,6 +168,7 @@ evitar duplicidades.
 : col  ( -- u )  xy drop  ;
 : row  ( -- u )  xy nip  ;
 : at-x  ( u -- )  row at-xy  ;
+true  [if]
 : at-max-xy  ( -- )
   \ Sitúa el cursor en los mayores valores posibles de x e y.
   \ El mayor valor posible es -1 interpretado sin signo;
@@ -182,6 +191,26 @@ evitar duplicidades.
   \ Devuelve el número de columnas de la pantalla.
   last_col 1+
   ;
+[else]
+false  [if]
+\ Wrong method!!!:
+: last_col  ( -- u )  form nip  ;
+: last_row  ( -- u )  form drop  ;
+: cols  ( -- u )  cols 1+  ;
+: rows  ( -- u )  rows 1+  ;
+[else]
+\ Right method!!!:
+\ But the hash error arises!!!
+: cols  ( -- u )  form nip  ;
+: rows  ( -- u )  form drop  ;
+: last_col  ( -- u )  cols 1-  ;
+: last_row  ( -- u )  rows 1-  ;
+[then]
+[then]
+\ Debug!!!:
+rows . cols . cr
+last_row . last_col . cr
+wait
 : no_window  ( -- )
   \ Desactiva la definición de zona de pantalla como ventana.
   [char] r trm+do-csi0
@@ -296,7 +325,7 @@ variable /indentation  \ En curso
 
 : not_first_line?  ( -- ff )
   \ ¿La línea de pantalla donde se imprimirá es la primera?
-  xy nip 0>
+  row 0>
   ;
 variable indent_first_line_too?  \ ¿Se indentará también la línea superior de la pantalla, si un párrafo empieza en ella?
 : indentation?  ( -- ff )
@@ -385,7 +414,7 @@ variable indent_first_line_too?  \ ¿Se indentará también la línea superior d
 
 \ Generador de números aleatorios
 
-include random.fs
+s" random.fs" included
 
 : randomize  ( -- )
   \ Reinicia la semilla de generación de números aleatorios.
@@ -890,6 +919,9 @@ variable success?  \ ¿Se ha completado con éxito el juego?
 : pressing$  ( -- a u )
   s{ s" pulsando" s" mediante" }s
   ;
+: they_make$  ( -- a u )
+  s{ s" forman" s" componen" }s
+  ;
 : instructions_0  ( -- )
   \ Instrucciones sobre el objeto del juego.
   s" El" s{ s" programa" s" juego" }s&
@@ -900,9 +932,11 @@ variable success?  \ ¿Se ha completado con éxito el juego?
   s{ s" esperará" s" se quedará esperando" }s&
   s" una respuesta."  s&
   s{
-  s" El juego consiste en"
-  s" Lo que hay que hacer es"
+  s" El" s{ s" juego" s" objetivo" }s& s" consiste en" s&
+  s" Lo que" s{ s" has de" s" tienes que" s" hay que" s" debes" }s& s" hacer es" s&
   s" El jugador" s{ s" debe" s" tiene que" }s&
+  s{ s" Tienes que" s" Debes" s" Has de" s" Hay que" }s
+  s" Tu" s{ s" objetivo" s" misión" }s
   }s&
   s{ s" responder a" s" escribir una respuesta para" }s&
   s" cada texto" s&
@@ -914,11 +948,11 @@ variable success?  \ ¿Se ha completado con éxito el juego?
   s{ s" familia de" s" de la misma familia que" }s&
   s" alguna de las palabras" s&
   s{ 
-  s" que lo forman." 
-  s" que forman el texto."
-  s" que forman dicho texto."
-  s" del texto." s" de dicho texto." 
-  }s& 
+  s" que lo" they_make$ s& 
+  s" que" they_make$ s& s" el texto" s&
+  s" que" they_make$ s& s" dicho texto" s&
+  s{ s" del" s" de dicho" }s s" texto" s&
+  }s& period+
   s" El proceso" s&
   s{ s" se repetirá" s" continuará" s" no acabará" s" no terminará" }s&
   s" hasta que todos los textos hayan sido mostrados y respondidos." s&
@@ -928,12 +962,12 @@ variable success?  \ ¿Se ha completado con éxito el juego?
   \ Instrucciones sobre el abandono del juego.
   s{
   s" No es posible" leave$ s& the_game$ s& comma+ except$ s& pressing$ s&
-  s" El" game$ s& s" no puede ser" left$ s& comma+ except$ s& pressing$ s&
+  s" El" game$ s& s" no puede ser" s& left$ s& comma+ except$ s& pressing$ s&
   s" La única" way$ s& s" de" s& leave$ s& the_game$ s& s" es pulsar" s&
   }s
   s{ s" la combinación de teclas" s" el atajo de teclado" s" las teclas" }s&
   s" «Ctrl»+«C»," s&
-  s{ s" lo que" s" lo cual" }s& s" nos" s&
+  s{ s" lo que" s" lo cual" }s& s" te" s&
   s{ s" devolverá" s" hará regresar" }s&
   s{ s" a la línea de comandos" s" al intérprete" }s&
   s" de Forth." s&
@@ -1000,7 +1034,7 @@ false [if]  \ --------------------------------
 [then]  \ --------------------------------
 
 : .menu  ( -- )
-  \ Imprime el menú.
+  \ Imprime el «menú».
   cr s" ¿Qué quieres hacer?" paragraph
   ;
 : (evaluate_option)  ( -- )
@@ -1037,8 +1071,7 @@ variable finish?
   ;
 : init/game  ( -- )
   \ Inicialización necesaria antes de cada partida.
-  page .centered_title
-  10000000 microseconds
+  page .centered_title 10 seconds
   init_output_cursor  page
   ;
 
@@ -1173,6 +1206,7 @@ restore_vocabularies
   \ Bucle principal del juego.
   init/once  begin  menu  until
   ;
+
 ' main alias autohipnosis
 ' main alias arranca
 ' main alias arrancar 
@@ -1198,7 +1232,9 @@ restore_vocabularies
 ' main alias probar
 ' main alias prueba
 ' main alias pruebo
-
+' main alias adelante
+' main alias ya
+' main alias vamos
 autohipnosis
 
 \ }}} ##########################################################
