@@ -25,113 +25,113 @@
 \ http://www.gnu.org/licenses .
 
 «ahoraestas» terms{
-momento instante sazón presente presencia contemporaneidad actualidad
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 comodidad confort descanso placer gozo goce disfrute
-posibilidad postura situación gesto actitud satisfacción disfrute
+posibilidad postura situación situaciÓn gesto actitud satisfacción satisfacciÓn disfrute
 }terms
 
 «puedescerr» terms{
 capacidad poder posibilidad 
-ocultamiento encubrimiento obstrucción
-apagón ceguera ciego oscuridad niebla
-vista mirada visión iris pupila párpado
-sueño soñolencia
+ocultamiento encubrimiento obstrucción obstrucciÓn
+apagón apagÓn ceguera ciego oscuridad niebla
+vista mirada visión visiÓn iris pupila párpado pÁrpado
+sueño sueÑo soñolencia soÑolencia
 }terms
 
 «vasairentr» terms{
-desplazamiento progreso progresión camino dirección sentido evolución transformación trasformación
-introducción penetración
+desplazamiento progreso progresión progresiÓn camino dirección direcciÓn sentido evolución evoluciÓn transformación transformaciÓn trasformación trasformaciÓn
+introducción introducciÓn penetración penetraciÓn
 inicio arranque comienzo
-mente sueño conciencia consciencia relajación relax
+mente sueño sueÑo conciencia consciencia relajación relajaciÓn relax
 }terms
 
 «yparaellov» terms{
-objetivo motivo finalidad destino razón
-corazón mente entraña
-desplazamiento movimiento traslado expulsión transferencia trasferencia transmisión trasmisión
-pensamiento mente percepción
-profundidad entraña
+objetivo motivo finalidad destino razón razÓn
+corazón corazÓn mente entraña entraÑa
+desplazamiento movimiento traslado expulsión expulsiÓn transferencia trasferencia transmisión transmisiÓn trasmisión trasmisiÓn
+pensamiento mente percepción percepciÓn
+profundidad entraña entraÑa
 }terms
 
 «ahoracontu» terms{
-momento presente presencia instante sazón contemporaneidad actualidad
-mirada vista visión iris pupila párpado
-apagón ceguera ciego oscuridad niebla
+momento presente presencia instante sazón sazÓn contemporaneidad actualidad
+mirada vista visión visiÓn iris pupila párpado pÁrpado
+apagón apagÓn ceguera ciego oscuridad niebla
 }terms
 
 «vastomando» terms{
-adquisición apropiación aprendizaje aprehendizaje descubrimiento
-consciencia responsabilidad sentido sensación percepción cuerpo
-aire aliento soplo soplido suspiro inspiracion espiración vientre pulmón vía soplo ritmo
+adquisición adquisiciÓn apropiación apropiaciÓn aprendizaje aprehendizaje descubrimiento
+consciencia responsabilidad sentido sensación sensaciÓn percepción percepciÓn cuerpo
+aire aliento soplo soplido suspiro inspiracion espiración espiraciÓn vientre pulmón pulmÓn vía vÍa soplo ritmo
 }terms
 
 «vahaciendo» terms{
-desplazamiento progreso progresión camino dirección sentido evolución transformación trasformación
-aire inspiracion espiración vientre pulmón vía soplo soplido ritmo
-comodidad confort descanso placer gozo goce satisfacción disfrute
+desplazamiento progreso progresión progresiÓn camino dirección direcciÓn sentido evolución evoluciÓn transformación transformaciÓn trasformación trasformaciÓn
+aire inspiracion espiración espiraciÓn vientre pulmón pulmÓn vía vÍa soplo soplido ritmo
+comodidad confort descanso placer gozo goce satisfacción satisfacciÓn disfrute
 }terms
 
 «vasaflojan» terms{
-desplazamiento progreso progresión camino dirección sentido evolución transformación trasformación
-laxitud abandono flojera debilidad relajación relax blandura calma paz tranquilidad quietud
-poder motor agente causa fuerza energía masa movimiento trabajo potencia
+desplazamiento progreso progresión progresiÓn camino dirección direcciÓn sentido evolución evoluciÓn transformación transformaciÓn trasformación trasformaciÓn
+laxitud abandono flojera debilidad relajación relajaciÓn relax blandura calma paz tranquilidad quietud
+poder motor agente causa fuerza energía energÍa masa movimiento trabajo potencia
 }terms
 
 «yvaspercib» terms{
-desplazamiento progreso progresión camino dirección sentido evolución transformación trasformación
-consciencia responsabilidad sentido sensación percepción
+desplazamiento progreso progresión progresiÓn camino dirección direcciÓn sentido evolución evoluciÓn transformación transformaciÓn trasformación trasformaciÓn
+consciencia responsabilidad sentido sensación sensaciÓn percepción percepciÓn
 conciencia consciencia mente cabeza cerebro pensamiento subconsciente
 interior
 }terms
 
 «teestatray» terms{
-aporte aportación regalo donación donativo dádiva entrega
+aporte aportación aportaciÓn regalo donación donaciÓn donativo dádiva dÁdiva entrega
 transporte trasporte viaje 
-sentimiento percepción intucición emoción
-comodidad confort placer gozo goce satisfacción disfrute
+sentimiento percepción percepciÓn intucición intuciciÓn emoción emociÓn
+comodidad confort placer gozo goce satisfacción satisfacciÓn disfrute
 }terms
 
 «eltipodese» terms{
-categoría clase grupo clasificación especie conjunto
-sentimiento percepción intucición emoción
+categoría categorÍa clase grupo clasificación clasificaciÓn especie conjunto
+sentimiento percepción percepciÓn intucición intuciciÓn emoción emociÓn
 yo mismo identidad
-momento instante sazón presente presencia contemporaneidad actualidad
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 requisito conveniencia
 prueba intento vivencia
 }terms
 
 «tusarticul» terms{
-cuerpo extremidad miembro engarce unión movimiento giro
-laxitud abandono flojera debilidad relajación relax blandura calma paz tranquilidad quietud
+cuerpo extremidad miembro engarce unión uniÓn movimiento giro
+laxitud abandono flojera debilidad relajación relajaciÓn relax blandura calma paz tranquilidad quietud
 }terms
 
 «ahoranonec» terms{
-momento instante sazón presente presencia contemporaneidad actualidad 
-requisito conveniencia posibilidad capacidad obligación 
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad 
+requisito conveniencia posibilidad capacidad obligación obligaciÓn 
 conciencia consciencia presencia descanso
-alarma atención concentración vigilancia cuidado
+alarma atención atenciÓn concentración concentraciÓn vigilancia cuidado
 }terms
 
 «nonecesita» terms{ 
-requisito conveniencia posibilidad capacidad obligación
-relajación relax tranquilidad quietud serenidad descanso calma paz
+requisito conveniencia posibilidad capacidad obligación obligaciÓn
+relajación relajaciÓn relax tranquilidad quietud serenidad descanso calma paz
 }terms
 
 «simplement» terms{
 sencillez simplicidad facilidad
-licencia voluntad deseo concesión
+licencia voluntad deseo concesión concesiÓn
 suceso acontecimiento efecto consecuencia
-transformación trasformación evolución progreso crecimiento modificación crisis
-requisito conveniencia obligación deber importancia
+transformación transformaciÓn trasformación trasformaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis
+requisito conveniencia obligación obligaciÓn deber importancia
 }terms
 
 «porquetuin» terms{
-motivo razón sentido
-transporte movimiento migración porte viaje desplazamiento
+motivo razón razÓn sentido
+transporte movimiento migración migraciÓn porte viaje desplazamiento
 limpieza excelencia
-transformación trasformación evolución progreso crecimiento modificación crisis cambio
+transformación transformaciÓn trasformación trasformaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis cambio
 importancia gravedad
-comodidad confort placer gozo goce satisfacción disfrute
+comodidad confort placer gozo goce satisfacción satisfacciÓn disfrute
 }terms
 
 «tuinconsc1» terms{
@@ -141,9 +141,9 @@ requisito conveniencia deseo voluntad
 }terms
 
 «yvasentran» terms{
-introducción penetración acceso
-crisis mutación transformación trasformación cambio progreso
-situación brete
+introducción introducciÓn penetración penetraciÓn acceso
+crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio progreso
+situación situaciÓn brete
 modo manera
 identidad
 velocidad lentitud paso
@@ -155,65 +155,65 @@ calma paz tranquilidad sosiego
 }terms
 
 «notacomova» terms{ 
-sensación percepción
-transformación trasformación evolución progreso crecimiento modificación crisis
-lentitud rapidez deceleración medida prisa
-mente imaginación idea
+sensación sensaciÓn percepción percepciÓn
+transformación transformaciÓn trasformación trasformaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis
+lentitud rapidez deceleración deceleraciÓn medida prisa
+mente imaginación imaginaciÓn idea
 }terms
 
 «lovashacie» terms{
-práctica creación efectividad fabricación logro consecución
+práctica prÁctica creación creaciÓn efectividad fabricación fabricaciÓn logro consecución consecuciÓn
 capacidad posibilidad voluntad
 gozo goce placer disfrute
-transformación trasformación evolución progreso crecimiento modificación crisis cambio
+transformación transformaciÓn trasformación trasformaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis cambio
 }terms
 
 «disfrutard0» terms{
 placer gozo goce disfrute
-individualidad separación todo conjunto grupo reunión
-percepción sentido cuerpo
+individualidad separación separaciÓn todo conjunto grupo reunión reuniÓn
+percepción percepciÓn sentido cuerpo
 }terms
 
 «disfrutard1» terms{
 placer gozo goce disfrute
-transformación trasformación mutación evolución progreso crecimiento modificación crisis
-situación brete
+transformación transformaciÓn trasformación trasformaciÓn mutación mutaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis
+situación situaciÓn brete
 identidad
-cabeza idea pensamiento imaginación
+cabeza idea pensamiento imaginación imaginaciÓn
 }terms
 
 «ahoralapas» terms{
-momento instante sazón presente presencia contemporaneidad actualidad
-comodidad confort descanso relajación relax calma paz tranquilidad quietud
-inactividad pereza holganza siesta sueño
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
+comodidad confort descanso relajación relajaciÓn relax calma paz tranquilidad quietud
+inactividad pereza holganza siesta sueño sueÑo
 propiedad cualidad calidad
 favor beneficio ayuda servicio
 }terms
 
 «inclusolap» terms{
-comodidad confort descanso relajación relax calma paz tranquilidad quietud
-inactividad holganza sueño siesta cama sofá hamaca sillón colchón
-favor beneficio ayuda servicio colaboración herramienta auxilio socorro
+comodidad confort descanso relajación relajaciÓn relax calma paz tranquilidad quietud
+inactividad holganza sueño sueÑo siesta cama sofá sofÁ hamaca sillón sillÓn colchón colchÓn
+favor beneficio ayuda servicio colaboración colaboraciÓn herramienta auxilio socorro
 }terms
 
 «enestetran» terms{
-crisis mutación transformación trasformación cambio progreso
-situación brete
+crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio progreso
+situación situaciÓn brete
 importancia gravedad
-introducción penetración
+introducción introducciÓn penetración penetraciÓn
 intensidad 
 }terms
 
 «permiteaho» terms{
-paso entrada llegada concesión licencia
-recuerdo imaginación escena memoria pasado ayer añoranza nostalgia
-foto fotografía pintura cuadro fotograma película film filme
+paso entrada llegada concesión concesiÓn licencia
+recuerdo imaginación imaginaciÓn escena memoria pasado ayer añoranza aÑoranza nostalgia
+foto fotografía fotografÍa pintura cuadro fotograma película pelÍcula film filme
 placer gozo goce disfrute belleza hermosura bondad
 cerebro cabeza pensamiento
 }terms
 
 «delmismomo» terms{
-manera camino método
+manera camino método mÉtodo
 aire soplo soplido aliento
 movimiento
 porte traslado transporte trasporte viaje 
@@ -225,87 +225,87 @@ ciclo reciclaje recurso limpieza
 }terms
 
 «latranquil» terms{
-laxitud abandono flojera relajación relax calma paz quietud
-crisis mutación transformación trasformación cambio progreso
-situación brete
+laxitud abandono flojera relajación relajaciÓn relax calma paz quietud
+crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio progreso
+situación situaciÓn brete
 porte traslado transporte trasporte viaje 
-momento instante sazón presente presencia contemporaneidad actualidad
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 }terms
 
 «cualquiers» terms{
 todo
-señal indicación indicador síntoma pista
+señal seÑal indicación indicaciÓn indicador síntoma sÍntoma pista
 fuerza rigidez rapidez violencia esfuerzo
-almacén montón posesión conservación herencia
+almacén almacÉn montón montÓn posesión posesiÓn conservación conservaciÓn herencia
 }terms
 
 «recuerdaqu» terms{
-cabeza imaginación pasado inspiración pensamiento idea memoria
-voluntad deseo concentración posesión
-momento instante sazón presente presencia contemporaneidad actualidad
+cabeza imaginación imaginaciÓn pasado inspiración inspiraciÓn pensamiento idea memoria
+voluntad deseo concentración concentraciÓn posesión posesiÓn
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 nada
-objetivo porqué efecto
+objetivo porqué porquÉ efecto
 gravedad trascendencia significado
 }terms
 
 «yqueyodehe» terms{
-expresión palabra discurso comunicación frase mensaje lengua lenguaje idioma
-momento instante sazón presente presencia contemporaneidad actualidad
-cabeza imaginación pasado inspiración pensamiento idea
-voluntad deseo concentración posesión
+expresión expresiÓn palabra discurso comunicación comunicaciÓn frase mensaje lengua lenguaje idioma
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
+cabeza imaginación imaginaciÓn pasado inspiración inspiraciÓn pensamiento idea
+voluntad deseo concentración concentraciÓn posesión posesiÓn
 }terms
 
 «sinoparaes» terms{ 
 destino objeto objetivo destinatario
-lugar ubicación
+lugar ubicación ubicaciÓn
 inconsciente consciencia conciencia 
 yo ser identidad
 }terms
 
 «todoesmasf» terms{
 universo totalidad conjunto
-incremento aumento evolución crecimiento desarrollo progreso ascensión reproducción
+incremento aumento evolución evoluciÓn crecimiento desarrollo progreso ascensión ascensiÓn reproducción reproducciÓn
 sencillez simplicidad ligereza
 }terms
 
 «vienenimag» terms{
 entrada llegada viaje
-escena dibujo recuerdo imaginación pasado foto fotografía memoria
+escena dibujo recuerdo imaginación imaginaciÓn pasado foto fotografía fotografÍa memoria
 placer gozo goce disfrute belleza hermosura bondad
 cabeza cerebro pensamiento
 }terms
 
 «imagenesco» terms{
-escena dibujo recuerdo imaginación pasado foto fotografía memoria
-similitud parecido semejanza analogía metáfora comparación comparativa
+escena dibujo recuerdo imaginación imaginaciÓn pasado foto fotografía fotografÍa memoria
+similitud parecido semejanza analogía analogÍa metáfora metÁfora comparación comparaciÓn comparativa
 sopor cansancio deseo descanso
 }terms
 
 «quizaconco» terms{
-posibilidad ocasión probabilidad
+posibilidad ocasión ocasiÓn probabilidad
 vista mirada ojo aspecto apariencia matiz brillo contraste tono tonalidad
-silueta volumen diseño línea ángulo curva superficie plano arista
+silueta volumen diseño diseÑo línea lÍnea ángulo Ángulo curva superficie plano arista
 placer gozo goce disfrute belleza hermosura
-satisfacción contento
+satisfacción satisfacciÓn contento
 }terms
 
 «consonidos» terms{
-oído oreja música vibración aire onda instrumento
+oído oÍdo oreja música mÚsica vibración vibraciÓn aire onda instrumento
 cuerda viento sentido escucha silencio
 }terms
 
 «conmelodia» terms{
-oído oreja música vibración aire onda instrumento
+oído oÍdo oreja música mÚsica vibración vibraciÓn aire onda instrumento
 cuerda viento sentido escucha partitura
 }terms
 
 «consensaci» terms{
-percepción sentido emoción sentimiento
+percepción percepciÓn sentido emoción emociÓn sentimiento
 cuerpo 
 }terms
 
 «conperfume» terms{
-nariz olfato olor aire líquido flor
+nariz olfato olor aire líquido lÍquido flor
 }terms
 
 «yconsabore» terms{
@@ -314,111 +314,111 @@ amargura dulzura acidez
 }terms
 
 «untrancequ0» terms{
-crisis mutación transformación trasformación cambio progreso
-situación brete
+crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio progreso
+situación situaciÓn brete
 verdad efectividad
 placer gozo goce disfrute 
 }terms
 
 «untrancequ1» terms{
-crisis mutación transformación trasformación cambio progreso
-situación brete
+crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio progreso
+situación situaciÓn brete
 }terms
 
 «tepermitea» terms{
-paso posibilidad permiso licencia concesión
+paso posibilidad permiso licencia concesión concesiÓn
 beneficio ventaja fruto provecho
-tamaño
+tamaño tamaÑo
 potencia potencial recurso
-cabeza cerebro pensamiento idea imaginación
+cabeza cerebro pensamiento idea imaginación imaginaciÓn
 subconsciente
 }terms
 
 «ypocoapoco» terms{
 lentitud paso paciencia constancia
 calma paz tranquilidad sosiego quietud
-continuación duración
-desplazamiento progreso progresión camino dirección sentido evolución 
-crisis mutación transformación trasformación cambio 
-situación brete
+continuación continuaciÓn duración duraciÓn
+desplazamiento progreso progresión progresiÓn camino dirección direcciÓn sentido evolución evoluciÓn 
+crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio 
+situación situaciÓn brete
 }terms
 
 «siguehacie» terms{
-continuación duración
-progreso progresión evolución transformación trasformación
-crisis mutación cambio
-incremento tamaño crecimiento
-intensidad importancia fundamento penetración
+continuación continuaciÓn duración duraciÓn
+progreso progresión progresiÓn evolución evoluciÓn transformación transformaciÓn trasformación trasformaciÓn
+crisis mutación mutaciÓn cambio
+incremento tamaño tamaÑo crecimiento
+intensidad importancia fundamento penetración penetraciÓn
 }terms
 
 «porqueesla» terms{
-motivo razón explicación sentido argumento
+motivo razón razÓn explicación explicaciÓn sentido argumento
 manera camina sistema procedimiento tipo
-normalidad universo todo armonía ley
+normalidad universo todo armonía armonÍa ley
 }terms
 
 «enquetuinc» terms{
-subconsciente mente cabeza cerebro idea pensamiento imaginación
+subconsciente mente cabeza cerebro idea pensamiento imaginación imaginaciÓn
 transporte trasporte viaje
-lugar ubicación destino movimiento
+lugar ubicación ubicaciÓn destino movimiento
 }terms
 
 «alniveldec» terms{
-lugar ubicación categoría peldaño paso escala piso altura profundidad
-pensamiento mente imaginación cerebro
-deseo voluntad intención
+lugar ubicación ubicaciÓn categoría categorÍa peldaño peldaÑo paso escala piso altura profundidad
+pensamiento mente imaginación imaginaciÓn cerebro
+deseo voluntad intención intenciÓn
 }terms
 
 «casisindar» terms{
-percepción sensación conciencia consciencia
+percepción percepciÓn sensación sensaciÓn conciencia consciencia
 limpieza vaciado
-desecho brete enfrentamiento discusión cuita tensión
+desecho brete enfrentamiento discusión discusiÓn cuita tensión tensiÓn
 }terms
 
 «salvoquede» terms{
-voluntad intención decisión
-manejo pensamiento solución meditación resolución gestión reflexión
-momento presente presencia instante sazón contemporaneidad actualidad
+voluntad intención intenciÓn decisión decisiÓn
+manejo pensamiento solución soluciÓn meditación meditaciÓn resolución resoluciÓn gestión gestiÓn reflexión reflexiÓn
+momento presente presencia instante sazón sazÓn contemporaneidad actualidad
 }terms
 
 «terelajasi» terms{
 calma paz tranquilidad sosiego quietud
-núcleo entraña contenido
+núcleo nÚcleo entraña entraÑa contenido
 superficie continente aspecto apariencia
 }terms
 
 «tuinconsc2» terms{
 mente cabeza cerebro pensamiento 
-crisis mutación transformación trasformación cambio progreso
-percepción cuerpo sentido
+crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio progreso
+percepción percepciÓn cuerpo sentido
 }terms
 
 «enlatemper» terms{
-calor frío
+calor frío frÍo
 identidad materia
 }terms
 
 «enlapercep» terms{
-sensación conciencia consciencia
-cuerpo materia tamaño volumen densidad
+sensación sensaciÓn conciencia consciencia
+cuerpo materia tamaño tamaÑo volumen densidad
 }terms
 
 «yahoraquiz» terms{
-tiempo momento instante sazón presente presencia contemporaneidad actualidad
-posibilidad probabilidad ocasión
+tiempo momento instante sazón sazÓn presente presencia contemporaneidad actualidad
+posibilidad probabilidad ocasión ocasiÓn
 comienzo inicio
-percepción
-extrañeza sorpresa
-vuelo aire levitación subida ascenso
+percepción percepciÓn
+extrañeza extraÑeza sorpresa
+vuelo aire levitación levitaciÓn subida ascenso
 }terms
 
 «deingravid» terms{
-flotación vuelo aire levitación peso subida ascenso
+flotación flotaciÓn vuelo aire levitación levitaciÓn peso subida ascenso
 }terms
 
 «enalgunasp» terms{
 grupo conjunto elemento identidad materia
-extremidad miembro órgano
+extremidad miembro órgano Órgano
 }terms
 
 «quizaempie» terms{
@@ -435,96 +435,96 @@ extremidad miembro brazo dedo cuerpo
 }terms
 
 «oporcualqu» terms{
-todo cuerpo órgano extremidad miembro elemento
+todo cuerpo órgano Órgano extremidad miembro elemento
 }terms
 
 «unaagradab» terms{
 comodidad confort descanso placer gozo goce disfrute
-vuelo aire levitación subida ascenso
+vuelo aire levitación levitaciÓn subida ascenso
 }terms
 
 «unaingravi» terms{
-vuelo aire levitación subida ascenso
-amigo reunión unión camino viaje movimiento desplazamiento
-transformación trasformación evolución progreso crecimiento modificación crisis
-importancia gravedad interior penetración
+vuelo aire levitación levitaciÓn subida ascenso
+amigo reunión reuniÓn unión uniÓn camino viaje movimiento desplazamiento
+transformación transformaciÓn trasformación trasformaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis
+importancia gravedad interior penetración penetraciÓn
 }terms
 
 «cadavezmas» terms{
-tiempo velocidad tamaño
-evolución progreso crecimiento 
-importancia gravedad interior penetración
+tiempo velocidad tamaño tamaÑo
+evolución evoluciÓn progreso crecimiento 
+importancia gravedad interior penetración penetraciÓn
 }terms
 
 «enesaespec» terms{
-tipo categoría conjunto grupo característica
-pensamiento imaginación embriaguez sopor
+tipo categoría categorÍa conjunto grupo característica caracterÍstica
+pensamiento imaginación imaginaciÓn embriaguez sopor
 }terms
 
 «dondelasim» terms{
-lugar ubicación
-escena dibujo recuerdo imaginación pasado foto fotografía memoria
-oído oreja música vibración aire onda instrumento
-sentido percepción cuerpo
+lugar ubicación ubicaciÓn
+escena dibujo recuerdo imaginación imaginaciÓn pasado foto fotografía fotografÍa memoria
+oído oÍdo oreja música mÚsica vibración vibraciÓn aire onda instrumento
+sentido percepción percepciÓn cuerpo
 }terms
 
 «secombinan» terms{
-mezcla reunión unión acople acoplamiento fusión
+mezcla reunión reuniÓn unión uniÓn acople acoplamiento fusión fusiÓn
 }terms
 
 «imagenes,s» terms{
-escena dibujo recuerdo imaginación pasado foto fotografía memoria
-oído oreja música vibración aire onda instrumento
-sentido percepción cuerpo
+escena dibujo recuerdo imaginación imaginaciÓn pasado foto fotografía fotografÍa memoria
+oído oÍdo oreja música mÚsica vibración vibraciÓn aire onda instrumento
+sentido percepción percepciÓn cuerpo
 }terms
 
 «quepuedens» terms{
 posibilidad probabilidad capacidad potencia potencial
-creación recreación aparición reaparición
-transformación trasformación evolución progreso crecimiento modificación crisis
+creación creaciÓn recreación recreaciÓn aparición apariciÓn reaparición reapariciÓn
+transformación transformaciÓn trasformación trasformaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis
 }terms
 
 «oquepueden» terms{
 alternativa
 posibilidad probabilidad capacidad potencia potencial
 esencia
-aprendizaje aprehendizaje familiaridad repetición recuerdo memoria
+aprendizaje aprehendizaje familiaridad repetición repeticiÓn recuerdo memoria
 }terms
 
 «perolomasi» terms{
 gravedad trascendencia
-permiso licencia paso concesión
+permiso licencia paso concesión concesiÓn
 vuelo aire 
-río agua corriente camino
+río rÍo agua corriente camino
 }terms
 
 «losdejasve» terms{
-permiso licencia paso concesión
-entrada llegada viaje cercanía acercamiento
+permiso licencia paso concesión concesiÓn
+entrada llegada viaje cercanía cercanÍa acercamiento
 identidad yo cuerpo
 }terms
 
 «sinobstacu» terms{
 muro frontera barrera impedimento pared inconveniente
-valor apertura aceptación libertad
+valor apertura aceptación aceptaciÓn libertad
 }terms
 
 «sintrabas» terms{
 muro frontera barrera impedimento pared inconveniente
-valor apertura aceptación libertad escape huida salida
+valor apertura aceptación aceptaciÓn libertad escape huida salida
 }terms
 
 «tevasencon» terms{
-sensación percepción cuerpo estado ánimo humor
-paso tiempo progreso evolución cambio transformación trasformación
+sensación sensaciÓn percepción percepciÓn cuerpo estado ánimo Ánimo humor
+paso tiempo progreso evolución evoluciÓn cambio transformación transformaciÓn trasformación trasformaciÓn
 bueno salud bienestar
 }terms
 
 «quizaahora» terms{
-posibilidad elección decisión
+posibilidad elección elecciÓn decisión decisiÓn
 deseo voluntad objetivo objeto gusto
-traslado actividad acción
-palabra sonido verbo discurso comunicación frase mensaje
+traslado actividad acción acciÓn
+palabra sonido verbo discurso comunicación comunicaciÓn frase mensaje
 silencio lengua
 esfuerzo
 }terms
@@ -532,21 +532,21 @@ esfuerzo
 «nisiquiera» terms{
 salida libertad
 esfuerzo
-vista mirada visión párpado observación contemplación despertar inicio nacimiento
+vista mirada visión visiÓn párpado pÁrpado observación observaciÓn contemplación contemplaciÓn despertar inicio nacimiento
 }terms
 
 «solodisfru» terms{
 comodidad confort descanso placer gozo goce disfrute
-vuelo aire levitación subida ascenso ligereza
+vuelo aire levitación levitaciÓn subida ascenso ligereza
 }terms
 
 «oquizadelo» terms{
-posibilidad probabilidad decisión
-oposición negación oponente antagonista 
+posibilidad probabilidad decisión decisiÓn
+oposición oposiciÓn negación negaciÓn oponente antagonista 
 }terms
 
 «depercibir» terms{
-sensación percepción
+sensación sensaciÓn percepción percepciÓn
 peso volumen densidad contacto descenso apoyo superficie
 comodidad confort descanso 
 }terms
@@ -554,50 +554,51 @@ comodidad confort descanso
 «enelsillon» terms{
 mueble suelo
 peso volumen densidad contacto descenso apoyo superficie
-lugar ubicación
+lugar ubicación ubicaciÓn
 }terms
 
 «ycadavezqu» terms{
 paso tiempo
-narración autohipnosis relajación relax descanso texto
-adquisición apropiación aprendizaje aprehendizaje
-característica propiedad cualidad calidad cosa asunto tema detalle
+narración narraciÓn autohipnosis relajación relajaciÓn relax descanso texto
+adquisición adquisiciÓn apropiación apropiaciÓn aprendizaje aprehendizaje
+característica caracterÍstica propiedad cualidad calidad cosa asunto tema detalle
 juego aventura
-sorpresa progreso evolución cambio transformación trasformación
+sorpresa progreso evolución evoluciÓn cambio transformación transformaciÓn trasformación trasformaciÓn
 }terms
 
 «resultados» terms{
 efecto objetivo objeto fruto
-sorpresa progreso evolución cambio transformación trasformación
+sorpresa progreso evolución evoluciÓn cambio transformación transformaciÓn trasformación trasformaciÓn
 }terms
 
 «sehacecada» terms{
-mejoría crecimiento aumento mejoramiento
+mejoría mejorÍa crecimiento aumento mejoramiento
 identidad yo
 ventaja provecho beneficio fruto
 }terms
 
 «dejatellev» terms{
-posibilidad permiso licencia concesión
+posibilidad permiso licencia concesión concesiÓn
 transporte trasporte viaje traslado 
-lugar ubicación destino movimiento
-momento instante sazón presente presencia contemporaneidad actualidad
+lugar ubicación ubicaciÓn destino movimiento
+incremento aumento progreso progresión progresiÓn
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 }terms
 
 «yahorateen» terms{
-momento instante sazón presente presencia contemporaneidad actualidad
-reunión unión choque tope sorpresa cita
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
+reunión reuniÓn unión uniÓn choque tope sorpresa cita
 paso pie bajada subida ascenso descenso
 }terms
 
 «unaescaler» terms{
 paso pie bajada subida ascenso descenso
-piedra roca suelo montaña
+piedra roca suelo montaña montaÑa
 flor
 }terms
 
 «yvamosaird» terms{
-desplazamiento camino dirección sentido
+desplazamiento camino dirección direcciÓn sentido
 bajada descenso
 }terms
 
@@ -607,181 +608,181 @@ todo paso pie descenso bajada
 
 «nosvacondu» terms{
 transporte trasporte viaje 
-desplazamiento camino dirección sentido 
-introducción penetración hundimiento
+desplazamiento camino dirección direcciÓn sentido 
+introducción introducciÓn penetración penetraciÓn hundimiento
 incremento aumento crecimiento desarrollo 
 }terms
 
 «yvamosairc» terms{
 futuro todo
-cálculo secuencia lista relación grupo
+cálculo cÁlculo secuencia lista relación relaciÓn grupo
 paso pie bajada subida ascenso descenso
 }terms
 
 «uno+» terms{
-paso escalón unidad otro descenso bajada dos
+paso escalón escalÓn unidad otro descenso bajada dos
 }terms
 
 «dos+» terms{
-paso escalón dúo par pareja otro descenso bajada tres
+paso escalón escalÓn dúo dÚo par pareja otro descenso bajada tres
 }terms
 
 «sientescom» terms{
-sensación percepción
+sensación sensaciÓn percepción percepciÓn
 manera modo estilo
-introducción penetración hundimiento
+introducción introducciÓn penetración penetraciÓn hundimiento
 incremento aumento crecimiento desarrollo
 }terms
 
 «tres+» terms{
-paso escalón terceto trío otro descenso bajada cuatro
+paso escalón escalÓn terceto trío trÍo otro descenso bajada cuatro
 }terms
 
 «cuatro+» terms{
-paso escalón cuarteto otro descenso bajada cinco
+paso escalón escalÓn cuarteto otro descenso bajada cinco
 }terms
 
 «cinco+» terms{
-paso escalón quinteto otro descenso bajada seis
+paso escalón escalÓn quinteto otro descenso bajada seis
 }terms
 
 «seis+» terms{
-paso escalón sexteto otro descenso bajada siete
+paso escalón escalÓn sexteto otro descenso bajada siete
 }terms
 
 «siete+» terms{
-paso escalón septeto otro descenso bajada ocho
+paso escalón escalÓn septeto otro descenso bajada ocho
 }terms
 
 «ocho+» terms{
-paso escalón octeto otro descenso bajada nueve
+paso escalón escalÓn octeto otro descenso bajada nueve
 }terms
 
 «nueve+» terms{
-paso escalón otro descenso bajada diez
+paso escalón escalÓn otro descenso bajada diez
 }terms
 
 «diez+» terms{
-paso escalón decena otro descenso bajada
+paso escalón escalÓn decena otro descenso bajada
 }terms
 
 «esuntrance» terms{
-transformación trasformación evolución progreso crecimiento modificación crisis
+transformación transformaciÓn trasformación trasformaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis
 incremento aumento crecimiento desarrollo 
 importancia gravedad
-momento instante sazón presente presencia contemporaneidad actualidad
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 }terms
 
 «apartirdea» terms{
-lugar ubicación
+lugar ubicación ubicaciÓn
 inicio comienzo origen
-palabra sonido verbo discurso comunicación frase mensaje
-paz quietud calma tranquilidad aislamiento vacío
+palabra sonido verbo discurso comunicación comunicaciÓn frase mensaje
+paz quietud calma tranquilidad aislamiento vacío vacÍo
 }terms
 
 «soloteayud» terms{
-abrigo protección mano amigo herramienta apoyo soporte refugio
-momento instante sazón posterioridad futuro
-regreso subida ascensión vuelta escape huida
-situación brete lugar ubicación
-mente imaginación cabeza cerebro idea
+abrigo protección protecciÓn mano amigo herramienta apoyo soporte refugio
+momento instante sazón sazÓn posterioridad futuro
+regreso subida ascensión ascensiÓn vuelta escape huida
+situación situaciÓn brete lugar ubicación ubicaciÓn
+mente imaginación imaginaciÓn cabeza cerebro idea
 }terms
 
 «mientrasyo» terms{
-momento instante sazón duración tiempo
-palabra sonido verbo discurso comunicación frase mensaje
-paz quietud calma tranquilidad aislamiento vacío
+momento instante sazón sazÓn duración duraciÓn tiempo
+palabra sonido verbo discurso comunicación comunicaciÓn frase mensaje
+paz quietud calma tranquilidad aislamiento vacío vacÍo
 yo identidad
-adquisición apropiación aprendizaje aprehendizaje descubrimiento
+adquisición adquisiciÓn apropiación apropiaciÓn aprendizaje aprehendizaje descubrimiento
 entrenamiento
-aporte aportación regalo donación donativo dádiva entrega
-consejo aviso receta lema mantra máxima
+aporte aportación aportaciÓn regalo donación donaciÓn donativo dádiva dÁdiva entrega
+consejo aviso receta lema mantra máxima mÁxima
 }terms
 
 «sugestione» terms{
 entrenamiento
 mensaje
-consejo aviso receta lema mantra máxima
+consejo aviso receta lema mantra máxima mÁxima
 }terms
 
 «ideasposit» terms{
-mente imaginación pensamiento creatividad
+mente imaginación imaginaciÓn pensamiento creatividad
 ventaja provecho beneficio fruto
 intensidad importancia fundamento 
-entrada penetración hundimiento filtración contagio fusión
+entrada penetración penetraciÓn hundimiento filtración filtraciÓn contagio fusión fusiÓn
 cerebro
 }terms
 
 «lasdirasme» terms{
-expresión palabra discurso comunicación frase mensaje lengua lenguaje idioma
-cabeza idea cerebro imaginación
-tú yo identidad
+expresión expresiÓn palabra discurso comunicación comunicaciÓn frase mensaje lengua lenguaje idioma
+cabeza idea cerebro imaginación imaginaciÓn
+tú tÚ yo identidad
 }terms
 
 «yvasasenti» terms{
-sensación percepción
-acción resultado logro consecuencia
+sensación sensaciÓn percepción percepciÓn
+acción acciÓn resultado logro consecuencia
 ventaja fruto provecho
 todo
-expresión palabra discurso comunicación frase mensaje lengua lenguaje idioma
-consejo aviso receta lema mantra máxima
+expresión expresiÓn palabra discurso comunicación comunicaciÓn frase mensaje lengua lenguaje idioma
+consejo aviso receta lema mantra máxima mÁxima
 }terms
 
 «yahoravoya» terms{
-momento instante sazón presente presencia contemporaneidad actualidad
-oído oreja vibración aire onda 
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
+oído oÍdo oreja vibración vibraciÓn aire onda 
 sentido escucha
 calma paz quietud
-motivo porqué objeto objetivo razón
+motivo porqué porquÉ objeto objetivo razón razÓn
 yo identidad
 }terms
 
 «quienprogr» terms{
 yo identidad
-formación
-adquisición apropiación aprendizaje aprehendizaje descubrimiento
-imaginación idea cabeza cerebro
+formación formaciÓn
+adquisición adquisiciÓn apropiación apropiaciÓn aprendizaje aprehendizaje descubrimiento
+imaginación imaginaciÓn idea cabeza cerebro
 }terms
 
 «yahora1» terms{
-momento instante sazón presente presencia contemporaneidad actualidad
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 inicio comienzo
 }terms
 
 «puedesirre» terms{
 capacidad posibilidad
-fin conclusión término
+fin conclusión conclusiÓn término tÉrmino
 mensaje
-consejo aviso receta lema mantra máxima
+consejo aviso receta lema mantra máxima mÁxima
 }terms
 
 «todasycada» terms{
 todo conjunto grupo total
-memoria recuerdo permanencia preservación
-adquisición apropiación aprendizaje aprehendizaje 
+memoria recuerdo permanencia preservación preservaciÓn
+adquisición adquisiciÓn apropiación apropiaciÓn aprendizaje aprehendizaje 
 interior
-cerebro pensamiento imaginación
+cerebro pensamiento imaginación imaginaciÓn
 subconsciente
 }terms
 
 «yahora2» terms{
-momento instante sazón presente presencia contemporaneidad actualidad
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 }terms
 
 «puedesirsa» terms{
-fin conclusión término
+fin conclusión conclusiÓn término tÉrmino
 huida escape
-situación ocasión brete circunstancia experiencia
+situación situaciÓn ocasión ocasiÓn brete circunstancia experiencia
 regreso vuelta retorno
-momento instante sazón 
+momento instante sazón sazÓn 
 deseo querencia gusto
 }terms
 
 «cadavezque» terms{
-momento instante sazón turno ocasión
+momento instante sazón sazÓn turno ocasión ocasiÓn
 juego aventura
 resultado efecto consecuencia fruto
-sorpresa progreso evolución cambio transformación trasformación
+sorpresa progreso evolución evoluciÓn cambio transformación transformaciÓn trasformación trasformaciÓn
 }terms
 
 «maspotente» terms{
@@ -790,76 +791,76 @@ capacidad posibilidad cualidad efectividad fortaleza fuerza
 }terms
 
 «vamossalie» terms{
-regreso subida ascensión vuelta escape huida
+regreso subida ascensión ascensiÓn vuelta escape huida
 lentitud paso paciencia constancia turno vez
 }terms
 
 «diez-» terms{
-paso escalón decena otro ascenso subida nueve
+paso escalón escalÓn decena otro ascenso subida nueve
 }terms
 
 «nueve-» terms{
 paso
-escalón otro ascenso subida ocho
+escalón escalÓn otro ascenso subida ocho
 }terms
 
 «ocho-» terms{
 paso
-escalón octeto otro ascenso subida siete
+escalón escalÓn octeto otro ascenso subida siete
 }terms
 
 «siete-» terms{
 paso
-escalón septeto otro ascenso subida seis
+escalón escalÓn septeto otro ascenso subida seis
 }terms
 
 «seis-» terms{
 paso
-escalón sexteto otro ascenso subida cinco
+escalón escalÓn sexteto otro ascenso subida cinco
 }terms
 
 «cinco-» terms{
 paso
-escalón quinteto otro ascenso subida cuatro
+escalón escalÓn quinteto otro ascenso subida cuatro
 }terms
 
 «cuatro-» terms{
 paso
-escalón cuarteto otro ascenso subida tres
+escalón escalÓn cuarteto otro ascenso subida tres
 }terms
 
 «tres-» terms{
 paso
-escalón terceto trío otro ascenso subida dos
+escalón escalÓn terceto trío trÍo otro ascenso subida dos
 }terms
 
 «dos-» terms{
 paso
-escalón dúo par pareja otro ascenso subida uno
+escalón escalÓn dúo dÚo par pareja otro ascenso subida uno
 }terms
 
 «yuno» terms{
-adición suma añadido
+adición adiciÓn suma añadido aÑadido
 paso
-escalón unidad otro ascenso subida cima
-fin conclusión meta final finalización llegada culminación
+escalón escalÓn unidad otro ascenso subida cima
+fin conclusión conclusiÓn meta final finalización finalizaciÓn llegada culminación culminaciÓn
 }terms
 
 «puedesabri» terms{
 capacidad posibilidad deseo potencia potencial
 salida libertad
-vista mirada visión iris pupila párpado
-observación contemplación despertar
+vista mirada visión visiÓn iris pupila párpado pÁrpado
+observación observaciÓn contemplación contemplaciÓn despertar
 }terms
 
 «ya» terms{
-momento instante sazón presente presencia contemporaneidad actualidad
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 }terms
 
 «...» terms{
 pausa espera intervalo tiempo intermedio
-descanso relajación relax sueño
-programación
-periodo duración minuto
-momento instante sazón presente presencia contemporaneidad actualidad
+descanso relajación relajaciÓn relax sueño sueÑo
+programación programaciÓn
+periodo duración duraciÓn minuto
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 }terms

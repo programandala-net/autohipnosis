@@ -1,7 +1,7 @@
 \ autohipnosis.fs
 
 \ Main file of
-\ «Autohipnosis» (version A-00-2012061723),
+\ «Autohipnosis» (version A-00-2012061801),
 \ an experimental text game in Spanish.
 
 \ http://programandala.net/es.programa.autohipnosis
@@ -152,27 +152,21 @@ wait
   \ (todas las líneas salvo las dos últimas).
   \ Nótese que TRM+SET-SCROLL-REGION cuenta las líneas empezando por uno,
   \ mientras que ANS Forth cuenta líneas y columnas empezando por cero.
-  last_row 1- 1 trm+set-scroll-region
-  \ last_row 2 - 1 trm+set-scroll-region  ;
+  \ last_row 1- 1 trm+set-scroll-region
+  last_row 1 - 1 trm+set-scroll-region
   \ 10 1 trm+set-scroll-region 
   ;
-2variable output-xy  \ Coordenadas del cursor en la ventana de salida
-: save_output_cursor
-  \ Guarda la posición actual del cursor en la ventana de salida.
-  xy output-xy 2!  ;
-: restore_output_cursor
-  \ Restaura la posición guardada del cursor en la ventana de salida.
-  output-xy 2@ at-xy  ;
 : at_first_output
   \ Sitúa el cursor en la posición en que se ha de imprimir la primera frase
   \ (en la parte inferior de la ventana de salida).
-  0 last_row 3 - at-xy
+  \ 0 last_row 3 - at-xy
   \ 0 dup at-xy
   \ 0 9 at-xy  \ prueba!!!
+  0 last_row 2 - at-xy
   ;
 : init_output_cursor
   output_window
-  at_first_output save_output_cursor
+  at_first_output trm+save-current-state
   no_window
   ;
 : at_input
@@ -270,10 +264,8 @@ defer 'sentences  \ Tabla de las direcciones de las frases
 : .sentence  ( u -- )
   \ Imprime una frase.
   \ u = Número ordinal de la frase 
-  output_window
-  restore_output_cursor
-  sentence$ paragraph
-  save_output_cursor
+  output_window trm+restore-current-state
+  sentence$ paragraph trm+save-current-state
   no_window
   ;
 
@@ -332,6 +324,8 @@ sentences,  \ Rellenar la tabla compilando en el diccionario su contenido
 \ Alias necesario porque el vocabulario 'forth' no estará
 \ visible durante la creación de los términos:
 ' variable alias term
+\ xxx Si se usa 'create' en lugar de 'variable', se reproduce
+\ el dichoso error.
 : create_term_header  ( a u -- )
   \ Crea la cabecera de una palabra del juego.
   \ a u = Nombre de la palabra
@@ -349,7 +343,7 @@ sentences,  \ Rellenar la tabla compilando en el diccionario su contenido
   \ Para simplificar el código, se usa una matriz de octetos
   \ en lugar de una matriz de bitios: tantos octetos
   \ como frases hayan sido definidas.
-  here  #sentences @ dup allot align  erase  ;
+  here #sentences @ dup allot align erase  ;
 : (create_term)  ( a u -- )
   \ Crea una palabra asociada a una frase,
   \ que funciona como una variable
@@ -731,6 +725,7 @@ also menu_vocabulary definitions
 ' finish alias apagad
 ' finish alias apagar
 ' finish alias apago
+' finish alias apagón
 ' finish alias apágate
 ' finish alias cerrad
 ' finish alias cerrar
@@ -814,10 +809,10 @@ restore_vocabularies
 ' main alias vamos
 ' main alias venga
 
-\ autohipnosis
-
 \ }}} ##########################################################
-\ Depuración {{{
+\ Herramientas para depuración {{{
+
+true [if]
 
 : .sentences  ( a -- )
   \ Imprime todas las frases con las que está asociado un término.
@@ -825,10 +820,20 @@ restore_vocabularies
   \ Ejemplos de uso:
   \   confort .sentences
   \   cambio .sentences
+  \ Evidentemente, antes el vocabulario 'player_vocabulary' debe estar activo:
+  \   also player_vocabulary
   cr
   #sentences @ 0 ?do
     dup i + c@ if  i sentence$ type cr  then
   loop  drop  ;
+
+\ Crear el término «z», válido para todas las frases:
+also player_vocabulary definitions
+0 s" z" create_term
+z #sentences @ true fill
+restore_vocabularies
+
+[then]
 
 \ }}} ##########################################################
 \ Notas {{{
@@ -849,3 +854,5 @@ Pedir confirmación de salida, pulsando la barra espaciadora.
 [then]
 
 \ }}} ##########################################################
+
+autohipnosis
