@@ -1,8 +1,8 @@
 \ autohipnosis.fs
 
-\ Fichero principal de
-\ «Autohipnosis» (versión A-00-2012050521),
-\ un juego conversacional experimental.
+\ Main file of
+\ «Autohipnosis» (version A-00-2012061723),
+\ an experimental text game in Spanish.
 
 \ http://programandala.net/es.programa.autohipnosis
 
@@ -23,6 +23,8 @@
 \ You should have received a copy of the GNU General Public
 \ License along with this program; if not, see
 \ http://www.gnu.org/licenses .
+
+\ }}} ##########################################################
 
 \ Este programa está escrito en Forth usando el sistema Gforth:
 \ http://www.jwdt.com/~paysan/gforth.html
@@ -75,36 +77,28 @@ o bien un apóstrofo, según los casos.
 \ Requisitos {{{
 
 \ -----------------------------
-\ De Gforth
-
-s" random.fs" required
-: randomize
-  \ Reinicia la semilla de generación de números aleatorios.
-  time&date 2drop 2drop * seed !  ;
-
-s" debug.fs" required
-
-\ -----------------------------
 \ De «Forth Foundation Library» (versión 0.8.0)
 \ (http://code.google.com/p/ffl/)
 
-\ Cadenas de texto dinámicas:
-s" ffl/str.fs" required
 \ Manejador de secuencias de escape de la consola:
 s" ffl/trm.fs" required
 
 \ -----------------------------
 \ De programandala.net
 
-s" ghoul/sb.fs" required  \ Almacén circular de textos.
+require ghoul/sb.fs  \ Almacén circular de textos
 \ ' bs+ alias s+
 ' bs& alias s&
 \ ' bs" alias s" immediate
 1024 heap_sb
 
-s" ghoul/xy.fs" required  \ 'xy', 'column', 'row'.
-s" ghoul/random_strings.fs" required  \ Textos aleatorios.
-
+require ghoul/random_strings.fs  \ Textos aleatorios
+require ghoul/xy.fs  \ 'xy'
+require ghoul/row.fs  \ 'row'
+require ghoul/column.fs  \ 'column'
+require ghoul/at-x.fs  \ 'at-x'
+require ghoul/print.fs  \ Impresión de textos justificados
+require ghoul/randomize.fs  \ 'randomize'
 
 \ }}} ##########################################################
 \ Herramientas {{{
@@ -114,16 +108,6 @@ s" ghoul/random_strings.fs" required  \ Textos aleatorios.
 : show...  show wait  ;
 ' true alias [true]  immediate
 ' false alias [false]  immediate
-[undefined] ++ [if]
-  : ++  ( a -- )
-    \ Incrementa el contenido de una dirección de memoria.
-    1 swap +!  ;
-[then]
-[undefined] -- [if]
-  : --  ( a -- )
-    \ Decrementa el contenido de una dirección de memoria.
-    -1 swap +!  ;
-[then]
 : period+  ( a1 u1 -- a2 u2 )
   \ Añade un punto al final de una cadena.
   s" ." s+  ;
@@ -135,47 +119,15 @@ s" ghoul/random_strings.fs" required  \ Textos aleatorios.
 \ Vocabularios {{{
 
 vocabulary game_vocabulary  \ palabras del programa
+vocabulary player_vocabulary  \ palabras del jugador
+\ No se usa todavía!!!:
+\ vocabulary answer_vocabulary  \ respuestas a preguntas de «sí» o «no»
+vocabulary menu_vocabulary  \ palabras para las opciones del menú
+
 : restore_vocabularies
   \ Restaura los vocabularios a su orden habitual.
   only forth also game_vocabulary definitions  ;
 restore_vocabularies
-
-false  [if]
-
-  \ El método que sigue provoca errores de acceso a
-  \ memoria al crear palabras en el vocabulario. No sé por
-  \ qué.
-
-  : case_sensitive_vocabulary  ( "name" -- )
-    \ Crea un vocabulario con nombre y sensible a mayúsculas.
-    create  table , 
-    does>  ( pfa -- )
-      \ Reemplaza el vocabulario superior.
-      \ Código tomado de Gforth (compat/vocabulary.fs).
-      @ >r
-      get-order dup 0= 50 and throw  \ Error 50 («search-order underflow») si la lista está vacía
-      nip r> swap set-order
-    ;
-    case_sensitive_vocabulary player_vocabulary  \ Palabras del jugador
-
-[else]
-
-  \ Método alternativo.
-
-  table value (player_vocabulary)
-  : player_vocabulary
-    \ Reemplaza el vocabulario superior con el del jugador.
-    \ Código adaptado de Gforth (compat/vocabulary.fs).
-    get-order dup 0= 50 and throw  \ Error 50 («search-order underflow») si la lista está vacía.
-    nip (player_vocabulary) swap set-order
-    ;
-
-[then]
-
-\ vocabulary player_vocabulary  \ palabras del jugador
-\ No se usan todavía!!!:
-\ vocabulary answer_vocabulary  \ respuestas a preguntas de «sí» o «no»
-vocabulary menu_vocabulary  \ palabras para las opciones del menú
 
 \ }}} ##########################################################
 \ Pantalla {{{
@@ -200,7 +152,10 @@ wait
   \ (todas las líneas salvo las dos últimas).
   \ Nótese que TRM+SET-SCROLL-REGION cuenta las líneas empezando por uno,
   \ mientras que ANS Forth cuenta líneas y columnas empezando por cero.
-  last_row 3 - 1 trm+set-scroll-region  ;
+  last_row 1- 1 trm+set-scroll-region
+  \ last_row 2 - 1 trm+set-scroll-region  ;
+  \ 10 1 trm+set-scroll-region 
+  ;
 2variable output-xy  \ Coordenadas del cursor en la ventana de salida
 : save_output_cursor
   \ Guarda la posición actual del cursor en la ventana de salida.
@@ -211,10 +166,15 @@ wait
 : at_first_output
   \ Sitúa el cursor en la posición en que se ha de imprimir la primera frase
   \ (en la parte inferior de la ventana de salida).
-  \ 0 last_row 5 - at-xy  ;
-  0 dup at-xy  ;
+  0 last_row 3 - at-xy
+  \ 0 dup at-xy
+  \ 0 9 at-xy  \ prueba!!!
+  ;
 : init_output_cursor
-  at_first_output save_output_cursor  ;
+  output_window
+  at_first_output save_output_cursor
+  no_window
+  ;
 : at_input
   \ Sitúa el cursor en la zona de entrada (la última línea).
   0 last_row at-xy  ;
@@ -222,111 +182,31 @@ wait
 \ }}} ##########################################################
 \ Impresión de textos {{{
 
-\ Cadena dinámica para impresión
-
-(
-
-Usamos una cadena dinámica llamada PRINT_STR para guardar
-los textos que hay que mostrar justificados en pantalla. En
-esta sección creamos la cadena y palabras útiles para
-manipularla.
-
-Nota!!!: La mayoría de estas palabras no son necesarias
-en el programa. Habrá que borrarlas.
-
-)
-
-str-create print_str
-
-: «»-clear
-  \ Vacía la cadena dinámica PRINT_STR.
-  print_str str-clear  ;
-: «»!  ( a u -- )
-  \ Guarda una cadena en la cadena dinámica PRINT_STR.
-  print_str str-set  ;
-: «»@  ( -- a u )
-  \ Devuelve el contenido de la cadena dinámica PRINT_STR.
-  print_str str-get  ;
-: «+  ( a u -- )
-  \ Añade una cadena al principio de la cadena dinámica PRINT_STR.
-  print_str str-prepend-string  ;
-: »+  ( a u -- )
-  \ Añade una cadena al final de la cadena dinámica PRINT_STR.
-  print_str str-append-string  ;
-: «c+  ( c -- )
-  \ Añade un carácter al principio de la cadena dinámica PRINT_STR.
-  print_str str-prepend-char  ;
-: »c+  ( c -- )
-  \ Añade un carácter al final de la cadena dinámica PRINT_STR.
-  print_str str-append-char  ;
-: «»bl+?  ( u -- ff )
-  \ ¿Se debe añadir un espacio al concatenar una cadena a la cadena dinámica PRINT_STR ?
-  \ u = Longitud de la cadena que se pretende unir a la cadena dinámica PRINT_STR
-  0<> print_str str-length@ 0<> and  ;
-: »&  ( a u -- )
-  \ Añade una cadena al final de la cadena dinámica TXT, con un espacio de separación.
-  dup «»bl+?  if  bl »c+  then  »+  ;
-: «&  ( a u -- )
-  \ Añade una cadena al principio de la cadena dinámica TXT, con un espacio de separación.
-  dup «»bl+?  if  bl «c+  then  «+   ;
-
-\ Impresión de párrafos justificados
-
-variable #lines  \ Número de línea del texto que se imprimirá
-
 \ Indentación de la primera línea de cada párrafo (en caracteres):
-2 constant default_indentation  \ Predeterminada 
-8 constant max_indentation  \ Máxima
-variable /indentation  \ En curso
+2 value /indentation 
+\ ¿Indentar también la línea superior de la pantalla?:
+variable indent_first_line_too?
 
 : not_first_line?  ( -- ff )  row 0>  ;
-variable indent_first_line_too?  \ ¿Se indentará también la línea superior de la pantalla, si un párrafo empieza en ella?
 : indentation?  ( -- ff )
   \ ¿Indentar la línea actual?
   not_first_line? indent_first_line_too? @ or  ;
-: char>string  ( c u -- a u )
-  \ Crea una cadena repitiendo un carácter.
-  \ c = Carácter
-  \ u = Longitud de la cadena
-  \ a = Dirección de la cadena
-  dup sb_allocate swap 2dup 2>r  rot fill  2r>  ;
-: indentation+
-  \ Añade indentación ficticia (con un carácter distinto del espacio)
-  \ a la cadena dinámica PRINT_STR , si la línea del cursor no es la primera.
-  indentation?  if
-    [char] X /indentation @ char>string «+
-  then  ;
-: indentation-  ( a1 u1 -- a2 u2 )
-  \ Quita a una cadena tantos caracteres por la izquierda como el valor de la indentación.
-  /indentation @ -  swap /indentation @ +  swap  ;
-: indent
-  \ Mueve el cursor a la posición requerida por la indentación.
-  /indentation @ ?dup  if  trm+move-cursor-right  then  ;
-: indentation>  ( a1 u1 -- a2 u2 ) \ Prepara la indentación de una línea
-  indentation?  if  indentation- indent  then  ;
-: .line  ( a u -- )  cr type  ;
-: .lines  ( a1 u1 ... an un n -- )
-  \ Imprime n líneas de texto.
-  \ a1 u1 = Última línea de texto
-  \ an un = Primera línea de texto
-  \ n = Número de líneas de texto en la pila
-  dup #lines !  0  ?do  .line  loop  ;
-: (paragraph)
-  \ Imprime la cadena dinámica PRINT_STR ajustándose al ancho de la pantalla.
-  indentation+  \ Añade indentación ficticia
-  print_str str-get cols str+columns  \ Divide la cadena dinámica PRINT_STR 
-  >r indentation> r>  \ Prepara la indentación efectiva de la primera línea
-  .lines  \ Imprime las líneas
-  print_str str-init  \ Vacía la cadena dinámica
+: (indent)
+  \ Indenta.
+  /indentation print_indentation
   ;
-: paragraph/ ( a u -- )
-  \ Imprime una cadena ajustándose al ancho de la pantalla.
-  print_str str-set (paragraph)  ;
+: indent
+  \ Indenta si es necesario.
+  indentation? if  (indent)  then
+  ;
+: cr+
+  print_cr indent 
+  ;
 : paragraph  ( a u -- )
-  \ Imprime una cadena ajustándose al ancho de la pantalla;
-  \ y un salto de línea final.
-  \ dup >r  paragraph/ r> ?cr  \ Versión original!!!
-  paragraph/ cr  ;
+  \ Imprime un texto justificado como inicio de un párrafo.
+  \ a u = Texto
+  cr+ print
+  ;
 
 \ }}} ##########################################################
 \ Pausas {{{
@@ -406,10 +286,10 @@ defer 'sentences  \ Tabla de las direcciones de las frases
   hs,  #sentences 1 over +!  @ constant  ;
 
 \ Crear las frases, definidas en un fichero independiente:
-s" autohipnosis_sentences.fs" included
+include autohipnosis_sentences.fs
 
 \ En este punto, las direcciones de todas las frases
-\ están en la pila y la variable SENTENCES# contiene
+\ están en la pila y la variable 'sentences#' contiene
 \ el número de frases que han sido creadas.
 ( a1 ... an )
 
@@ -449,11 +329,17 @@ sentences,  \ Rellenar la tabla compilando en el diccionario su contenido
   execute_nt  ( u a )  associate 
   \ cr ." salida de update_term ... " show \ depuración!!!
   ;
+\ Alias necesario porque el vocabulario 'forth' no estará
+\ visible durante la creación de los términos:
+' variable alias term
 : create_term_header  ( a u -- )
   \ Crea la cabecera de una palabra del juego.
   \ a u = Nombre de la palabra
   \ cr ." create_term_header ... " show \ depuración!!!
-  name-too-short? header, reveal dovar: cfa, 
+  \ Sistema antiguo:
+  \ name-too-short? header, reveal dovar: cfa, 
+  \ 2012-06-17 Sistema nuevo:
+  s" term" 2swap s& evaluate
   \ cr ." salida de create_term_header ... " show \ depuración!!!
   ;
 : create_term_array
@@ -491,7 +377,7 @@ sentences,  \ Rellenar la tabla compilando en el diccionario su contenido
   \ cr ." create_term salida ( ) " show \ depuración!!!
   ;
 : another_term  ( u a1 u1 -- )
-  \ Crea o actualiza una palabra asociada una frase.
+  \ Crea o actualiza una palabra asociada a una frase.
   \ u = Identificador de la frase
   \ a1 u1 = Nombre de la palabra
   \ cr ." another_term entrada ( u a1 u1 ) " show \ depuración!!!
@@ -507,14 +393,14 @@ sentences,  \ Rellenar la tabla compilando en el diccionario su contenido
 : parse_term  ( -- a u )
   \ Devuelve la siguiente palabra asociada a una frase.
   begin   parse-name dup 0=
-  while   2drop refill 0= abort" Error en el código fuente: falta un }terms" 
+  while   2drop refill 0= abort" Error en el código fuente: falta un '}terms'" 
   repeat  ;
 : another_term?  ( -- a u f )
   \ ¿Hay una nueva palabra en la lista?
   \ Toma la siguiente palabra en el flujo de entrada
   \ y comprueba si es el final de la lista de palabras asociadas a una frase.
   \ a u = Palabra encontrada
-  \ ff = ¿No es el final de la lista?
+  \ f = ¿No es el final de la lista?
   parse_term 
   \ 2dup cr ." ************************** " type  \ depuración!!!
   2dup s" }terms" compare
@@ -524,15 +410,15 @@ sentences,  \ Rellenar la tabla compilando en el diccionario su contenido
   \ Crea o actualiza palabras asociadas a una frase.
   \ u = Identificador de frase
   \ cr ." ############################# terms{" show \ depuración!!!
-  also player_vocabulary definitions
+  only game_vocabulary also player_vocabulary definitions
   assert( depth 1 = )
   begin   
-  \ cr ." terms{ after begin ... " show \ depuración!!!
-  dup another_term? ( u u a1 u1 f )
-  \ cr ." terms{ before while ... " show \ depuración!!!
-  assert( depth 5 = )
+    \ cr ." terms{ after begin ... " show \ depuración!!!
+    dup another_term? ( u u a1 u1 f )
+    \ cr ." terms{ before while ... " show \ depuración!!!
+    assert( depth 5 = )
   while   another_term
-  assert( depth 1 = )
+    assert( depth 1 = )
     \ cr ." terms{ before repeat... " show \ depuración!!!
   repeat  
   assert( depth 4 = )
@@ -541,12 +427,12 @@ sentences,  \ Rellenar la tabla compilando en el diccionario su contenido
   restore_vocabularies  ;
 
 \ Crear los términos, definidos en un fichero independiente:
-s" autohipnosis_terms.fs" included
+include autohipnosis_terms.fs
 
 \ Crear los comandos especiales para controlar el juego
 
 also player_vocabulary definitions
-: FIN ( -- )
+: #fin ( -- )
   \ Pendiente!!!
   ;
 restore_vocabularies
@@ -599,7 +485,9 @@ create 'command /command chars allot align
 : command  ( -- a u )
   \ Acepta un comando del jugador.
   init_command_line
+  only player_vocabulary
   'command /command accept  'command swap
+  restore_vocabularies
   no_window  ;
 
 \ }}} ##########################################################
@@ -704,39 +592,6 @@ variable success?  \ ¿Se ha completado con éxito el juego?
 \ }}} ##########################################################
 \ Menú {{{
 
-false [if]  \ --------------------------------
-
-\ Borrador descartado de un sistema de menú clásico.
-
-: .menu
-  \ Imprime el menú.
-  cr ." I...nstrucciones" 
-  cr ." J...ugar"
-  success? @  if  cr ." C...uriosidades"  then
-  cr ." F...in"  ;
-: valid_option  ( c1 -- c1 | c2 | false )
-  \ ¿Es válida una opción del menú?
-  \ c1 = Código de la tecla pulsada
-  \ c2 = Código de la tecla válida equivalente
-  case
-    [char] i  of  [char] i  endof
-    [char] j  of  [char] j  endof
-    [char] f  of  [char] f  endof
-    [char] I  of  [char] i  endof
-    [char] J  of  [char] j  endof
-    [char] F  of  [char] f  endof
-    false swap
-  endcase  ;
-: menu_option  ( -- c )
-  \ Devuelve una opción del menú.
-  begin  key valid_option ?dup  until  ;
-: menu  ( -- u )
-  \ Muestra el menú y espera una opción válida.
-  \ Provisional!!!
-  .menu menu_option  ;
-
-[then]  \ --------------------------------
-
 : .menu
   \ Imprime el «menú».
   cr s" ¿Qué quieres hacer?" paragraph  ;
@@ -804,10 +659,12 @@ also menu_vocabulary definitions
 \ Comando «instrucciones»:
 ' instructions alias ayuda
 ' instructions alias espera
+' instructions alias esperad
 ' instructions alias esperar
 ' instructions alias espero
 ' instructions alias ex
 ' instructions alias examina
+' instructions alias examinad
 ' instructions alias examinar
 ' instructions alias examino
 ' instructions alias examínate
@@ -816,11 +673,13 @@ also menu_vocabulary definitions
 ' instructions alias instrucciones
 ' instructions alias inventario
 ' instructions alias lee
+' instructions alias leed
 ' instructions alias leer
 ' instructions alias leo
 ' instructions alias m
 ' instructions alias manual
 ' instructions alias mira
+' instructions alias mirad
 ' instructions alias mirar
 ' instructions alias miro
 ' instructions alias mírate
@@ -828,51 +687,64 @@ also menu_vocabulary definitions
 ' instructions alias pista
 ' instructions alias pistas
 ' instructions alias registra
+' instructions alias registrad
 ' instructions alias registrar
 ' instructions alias registro
 ' instructions alias x
 \ Comando «jugar»:
 ' play alias arranca
+' play alias arrancad 
 ' play alias arrancar 
 ' play alias arranco
+' play alias comenzad
 ' play alias comenzar
 ' play alias comienza
 ' play alias comienzo
 ' play alias ejecuta
+' play alias ejecutad
 ' play alias ejecutar
 ' play alias ejecuto
+' play alias empezad
 ' play alias empezar
 ' play alias empieza
 ' play alias empiezo
 ' play alias inicia
+' play alias iniciad 
 ' play alias iniciar 
 ' play alias inicio
 ' play alias juego
+' play alias jugad
 ' play alias jugar
 ' play alias partida
+' play alias probad
 ' play alias probar
 ' play alias pruebo
 \ Comando «fin»:
 ' finish alias acaba
+' finish alias acabad
 ' finish alias acabar
 ' finish alias acabo
 ' finish alias acabose
 ' finish alias acabó
 ' finish alias adiós
 ' finish alias apaga
+' finish alias apagad
 ' finish alias apagar
 ' finish alias apago
 ' finish alias apágate
+' finish alias cerrad
 ' finish alias cerrar
 ' finish alias cierra
 ' finish alias cierre
 ' finish alias cierro
 ' finish alias ciérrate
+' finish alias concluid
 ' finish alias concluir
 ' finish alias conclusión
 ' finish alias concluye
 ' finish alias concluyo
 ' finish alias desconecta
+' finish alias desconectad
 ' finish alias desconectar
 ' finish alias desconecto
 ' finish alias desconexión
@@ -881,14 +753,17 @@ also menu_vocabulary definitions
 ' finish alias final
 ' finish alias finaliza
 ' finish alias finalización
+' finish alias finalizad
 ' finish alias finalizar
 ' finish alias finalizo
 ' finish alias sal
 ' finish alias salgo
+' finish alias salid
 ' finish alias salida
 ' finish alias salir
 ' finish alias termina
 ' finish alias terminación
+' finish alias terminad
 ' finish alias terminar
 ' finish alias termino
 ' finish alias término
@@ -902,106 +777,58 @@ restore_vocabularies
   \ Bucle principal del juego.
   init/once  begin  menu  until  ;
 
-true  [if]
-
-(
-
-~/forth/autohipnosis/autohipnosis.fs:1236: Invalid memory address
-' main alias >>>juego<<<
-Backtrace:
-$B718C71C @
-$B7198774 name>string
-$B71988FC (reveal
-$FFFFFFFF
-$B71989B0 inithash
-$B7198C3C addall
-$0
-$B7198D40 hashdouble
-$B719882C hash-alloc
-$B7198864 (reveal
-$B718FC48 perform
-$B718F0F8 reveal
-
-)
-
 ' main alias autohipnosis
 ' main alias arranca
+' main alias arrancad
 ' main alias arrancar 
 ' main alias arranco
+' main alias comenzad
 ' main alias comenzar
 ' main alias comienza
 ' main alias comienzo
 ' main alias ejecuta
+' main alias ejecutad
 ' main alias ejecutar
 ' main alias ejecuto
 ' main alias ejecútate
+' main alias empezad
 ' main alias empezar
 ' main alias empieza
 ' main alias empiezo
 ' main alias inicia
+' main alias iniciad
 ' main alias iniciar 
 ' main alias inicio
 ' main alias iníciate
 ' main alias juega
 ' main alias juego
+' main alias jugad
 ' main alias jugar
 ' main alias partida
+' main alias probad
 ' main alias probar
 ' main alias prueba
 ' main alias pruebo
 ' main alias adelante
 ' main alias ya
 ' main alias vamos
-[else]
+' main alias venga
 
-(
-: juego  main  >>>;<<<
-Backtrace:
-$B733971C @
-$B7345774 name>string
-$B73458FC (reveal
-$FFFFFFFF
-$B73459B0 inithash
-$B7345C3C addall
-$0
-$B7345D40 hashdouble
-$B734582C hash-alloc
-$B7345864 (reveal
-$B733CC48 perform
-$B733CA14 reveal
+\ autohipnosis
 
-)
+\ }}} ##########################################################
+\ Depuración {{{
 
-: autohipnosis  main  ;
-: arranca  main  ;
-: arrancar   main  ;
-: arranco  main  ;
-: comenzar  main  ;
-: comienza  main  ;
-: comienzo  main  ;
-: ejecuta  main  ;
-: ejecutar  main  ;
-: ejecuto  main  ;
-: ejecútate  main  ;
-: empezar  main  ;
-: empieza  main  ;
-: empiezo  main  ;
-: inicia  main  ;
-: iniciar   main  ;
-: inicio  main  ;
-: iníciate  main  ;
-: juega  main  ;
-: juego  main  ;
-: jugar  main  ;
-: partida  main  ;
-: probar  main  ;
-: prueba  main  ;
-: pruebo  main  ;
-: adelante  main  ;
-: ya  main  ;
-: vamos  main  ;
-[then]  main  ;
-autohipnosis
+: .sentences  ( a -- )
+  \ Imprime todas las frases con las que está asociado un término.
+  \ a = Dirección del término
+  \ Ejemplos de uso:
+  \   confort .sentences
+  \   cambio .sentences
+  cr
+  #sentences @ 0 ?do
+    dup i + c@ if  i sentence$ type cr  then
+  loop  drop  ;
 
 \ }}} ##########################################################
 \ Notas {{{
