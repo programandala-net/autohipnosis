@@ -1,28 +1,17 @@
 \ autohipnosis.fs
 
-\ Main file of
-\ «Autohipnosis» (version A-00-2012091200),
-\ an experimental text game in Spanish.
+\ This is the main file of «Autohipnosis»,
+\ an experimental interactive fiction in Spanish.
+
+\ Version 0.0.0-20151208.
 
 \ http://programandala.net/es.programa.autohipnosis
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Copyright (C) 2012,2015 Marcos Cruz (programandala.net)
 
-\ Autohipnosis is free software; you can redistribute it
-\ and/or modify it under the terms of the GNU General Public
-\ License as published by the Free Software Foundation;
-\ either version 2 of the License, or (at your option) any
-\ later version.
-
-\ Autohipnosis is distributed in the hope that it will be
-\ useful, but WITHOUT ANY WARRANTY; without even the implied
-\ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-\ PURPOSE.  See the GNU General Public License for more
-\ details.
-
-\ You should have received a copy of the GNU General Public
-\ License along with this program; if not, see
-\ <http://www.gnu.org/licenses>.
+\ You may do whatever you want with this work, so long as you
+\ retain the copyright notice(s) and this license in all
+\ redistributed copies and derived works. There is no warranty.
 
 \ }}} ##########################################################
 
@@ -32,7 +21,7 @@
 \ <http://www.vim.org>
 
 \ Historial de desarrollo:
-\ <http://programandala.net/es.programa.autohipnosis.historial>
+\ <http://programandala.net/es.programa.autohipnosis.historial.html>
 
 \ Información sobre juegos conversacionales:
 \ <http://caad.es>
@@ -115,15 +104,20 @@ require galope/at-x.fs  \ 'at-x'
 require galope/print.fs  \ Impresión de textos justificados
 require galope/randomize.fs  \ 'randomize'
 require galope/seconds.fs  \ 'seconds'
+require galope/two-drops.fs  \ '2drops'
+require galope/sconstant.fs  \ 'sconstant'
 
 \ }}} ##########################################################
 \ Herramientas {{{
 
-: show  cr .s
+: show  ( -- )
+  cr .s
   ;
-: wait  key drop
+: wait  ( -- )
+  key drop
   ;
-: show...  show wait
+: show...  ( -- )
+  show wait
   ;
 ' true alias [true]  immediate
 ' false alias [false]  immediate
@@ -141,11 +135,11 @@ require galope/seconds.fs  \ 'seconds'
 
 vocabulary game_vocabulary  \ palabras del programa
 vocabulary player_vocabulary  \ palabras del jugador
-\ xxx no se usa todavía:
+\ XXX no se usa todavía:
 \ vocabulary answer_vocabulary  \ respuestas a preguntas de «sí» o «no»
 vocabulary menu_vocabulary  \ palabras para las opciones del menú
 
-: restore_vocabularies
+: restore_vocabularies  ( -- )
   \ Restaura los vocabularios a su orden habitual.
   only forth also game_vocabulary definitions
   ;
@@ -162,19 +156,19 @@ restore_vocabularies
   ;
 
 false  [if]
-\ xxx depuración:
+\ XXX INFORMER:
 cr ." rows x cols = " rows . cols .
 cr ." last row = " last_row . 
 cr ." last col = " last_col .
 wait
 [then]
 
-: no_window
+: no_window  ( -- )
   \ Desactiva la definición de zona de pantalla como ventana.
   [char] r trm+do-csi0
   ;
 
-: output_window
+: output_window  ( -- )
   \ Selecciona una zona de pantalla para la salida principal
   \ (todas las líneas salvo las dos últimas).
   \ Nótese que 'trm+set-scroll-region' cuenta las líneas empezando por uno,
@@ -183,20 +177,20 @@ wait
   last_row 1 - 1 trm+set-scroll-region
   \ 10 1 trm+set-scroll-region 
   ;
-: at_first_output
+: at_first_output  ( -- )
   \ Sitúa el cursor en la posición en que se ha de imprimir la primera frase
   \ (en la parte inferior de la ventana de salida).
   \ 0 last_row 3 - at-xy
   \ 0 dup at-xy
-  \ 0 9 at-xy  \ xxx prueba
+  \ 0 9 at-xy  \ XXX TMP
   0 last_row 2 - at-xy
   ;
-: init_output_cursor
+: init_output_cursor  ( -- )
   output_window
   at_first_output trm+save-current-state
   no_window
   ;
-: at_input
+: at_input  ( -- )
   \ Sitúa el cursor en la zona de entrada (la última línea).
   0 last_row at-xy
   ;
@@ -216,15 +210,15 @@ variable indent_first_line_too?
   \ ¿Indentar la línea actual?
   not_first_line? indent_first_line_too? @ or
   ;
-: (indent)
+: (indent)  ( -- )
   \ Indenta.
   /indentation print_indentation
   ;
-: indent
+: indent  ( -- )
   \ Indenta si es necesario.
   indentation? if  (indent)  then
   ;
-: cr+
+: cr+  ( -- )
   print_cr indent 
   ;
 : paragraph  ( a u -- )
@@ -241,7 +235,7 @@ variable indent_first_line_too?
   \ u = Columna
   dup cr at-x
   ;
-: .title
+: .title  ( -- )
   \ Imprime el título en la posición actual del cursor.
   column
   ."   _" title_row
@@ -260,7 +254,7 @@ variable indent_first_line_too?
   \ u2 = Medida pequeña, la del texto a imprimir (ancho o alto)
   - 2 /
   ;
-: .centered_title
+: .centered_title  ( -- )
   \ Imprime el título en el centro de la pantalla.
   cols title_width margin
   rows title_height margin
@@ -318,8 +312,9 @@ include autohipnosis_sentences.fs
   ;
 
 \ Tabla para las direcciones de las frases
-create ('sentences)  ' ('sentences) is 'sentences
-sentences,  \ Rellenar la tabla compilando en el diccionario su contenido
+create ('sentences)
+' ('sentences) is 'sentences
+sentences,  \ Crear la tabla compilando sus datos
 
 : associated?  ( u a | a u -- ff )
   \ ¿Está un término asociado a una frase?
@@ -349,41 +344,41 @@ sentences,  \ Rellenar la tabla compilando en el diccionario su contenido
   \ Asocia un término a una frase.
   \ u = Identificador de la frase
   \ nt = Identificador de nombre de la palabra del término.
-  \ cr ." update_term ... " show \ xxx depuración
+  \ cr ." update_term ... " show \ XXX INFORMER
   execute_nt  ( u a )  associate 
-  \ cr ." salida de update_term ... " show \ xxx depuración
+  \ cr ." salida de update_term ... " show \ XXX INFORMER
   ;
 \ Alias necesario porque el vocabulario 'forth' no estará
 \ visible durante la creación de los términos:
 ' variable alias term
-\ ' create alias variablx \ xxx try
-\ xxx Si se usa 'create' en lugar de 'variable', se reproduce
+\ ' create alias variablx \ XXX try
+\ XXX Si se usa 'create' en lugar de 'variable', se reproduce
 \ el dichoso error.
 : create_term_word  ( a u -- )
   \ Crea una palabra para el término.
   \ a u = Término
-  \ cr ." create_term_header ... " show \ xxx depuración
+  \ cr ." create_term_header ... " show \ XXX INFORMER
   \ Sistema antiguo:
   \ name-too-short? header, reveal dovar: cfa, 
 
   \ 2012-06-17 Sistema nuevo:
   \ s" term" 2swap s& evaluate
 
-  \ xxx funciona:
+  \ XXX funciona:
   \ Alternativa al sistema nuevo:
   \ also forth s" variable" 2swap s& evaluate previous
 
-  \ xxx prueba:
+  \ XXX TMP:
   \ also forth s" variablx" 2swap s& evaluate previous
 
-  \ xxx El error también se produce usando 'create' así:
+  \ XXX El error también se produce usando 'create' así:
   \ also forth s" create" 2swap s& evaluate previous
-  \ cr ." salida de create_term_header ... " show \ xxx depuración
+  \ cr ." salida de create_term_header ... " show \ XXX INFORMER
 
   \ 2012-09-11 Otro sistema:
   nextname term
   ;
-: create_term_array
+: create_term_array  ( -- )
   \ Crea la matriz de datos de un término.
   \ Cada término tiene una matriz para marcar
   \ las frases con las que está asociado.
@@ -398,39 +393,39 @@ sentences,  \ Rellenar la tabla compilando en el diccionario su contenido
   \ pero tiene una zona de datos de tantos octetos
   \ como frases hayan sido definidas.
   \ a u = Término
-  \ cr ." create_term entrada ( a u )" show \ xxx depuración
+  \ cr ." create_term entrada ( a u )" show \ XXX INFORMER
   create_term_word create_term_array
-  \ cr ." salida de create_term ( ) " show \ xxx depuración
+  \ cr ." salida de create_term ( ) " show \ XXX INFORMER
   ;
 : init_term  ( u -- )
   \ Inicializa la última palabra del juego creada,
   \ asociándola a una frase.
   \ u = Identificador de la frase
-  \ cr ." init_term entrada ( u ) " show \ xxx depuración
+  \ cr ." init_term entrada ( u ) " show \ XXX INFORMER
   execute_latest associate
-  \ cr ." salida de init_term ( ) " show \ xxx depuración
+  \ cr ." salida de init_term ( ) " show \ XXX INFORMER
   ;
 : new_term  ( u a1 u1 -- )
   \ Crea un nuevo término asociado a una frase.
   \ u = Identificador de la frase
   \ a1 u1 = Término
-  \ cr ." new_term entrada ( u a1 u1 ) " show \ xxx depuración
+  \ cr ." new_term entrada ( u a1 u1 ) " show \ XXX INFORMER
   create_term init_term
-  \ cr ." new_term salida ( ) " show \ xxx depuración
+  \ cr ." new_term salida ( ) " show \ XXX INFORMER
   ;
 : another_term  ( u a1 u1 -- )
   \ Crea o actualiza una palabra asociada a una frase.
   \ u = Identificador de la frase
   \ a1 u1 = Nombre de la palabra
-  \ cr ." another_term entrada ( u a1 u1 ) " show \ xxx depuración
+  \ cr ." another_term entrada ( u a1 u1 ) " show \ XXX INFORMER
   2dup
-  \ cr ." another_term before find-name " show \ xxx depuración
+  \ cr ." another_term before find-name " show \ XXX INFORMER
   find-name
-  \ cr ." another_term after find-name " show \ xxx depuración
+  \ cr ." another_term after find-name " show \ XXX INFORMER
   ?dup 
-  \ cr ." another_term tras ?dup " show \ xxx depuración
+  \ cr ." another_term tras ?dup " show \ XXX INFORMER
   if  nip nip update_term  else  new_term  then
-  \ cr ." another_term final ( ) " show \ xxx depuración
+  \ cr ." another_term final ( ) " show \ XXX INFORMER
   ;
 : parse_term  ( -- a u )
   \ Devuelve, del flujo de código fuente, el siguiente término.
@@ -449,20 +444,20 @@ sentences,  \ Rellenar la tabla compilando en el diccionario su contenido
 : terms{  ( u "name#0" ... "name#n" "}terms" -- )
   \ Crea o actualiza palabras asociadas a una frase.
   \ u = Identificador de frase
-  \ cr ." ############################# terms{" show \ xxx depuración
+  \ cr ." ############################# terms{" show \ XXX INFORMER
   only game_vocabulary also player_vocabulary definitions
   assert( depth 1 = )
   begin   
-    \ cr ." terms{ after begin ... " show \ xxx depuración
+    \ cr ." terms{ after begin ... " show \ XXX INFORMER
     dup another_term? ( u u a1 u1 f )
-    \ cr ." terms{ before while ... " show \ xxx depuración
+    \ cr ." terms{ before while ... " show \ XXX INFORMER
     assert( depth 5 = )
   while   another_term
     assert( depth 1 = )
-    \ cr ." terms{ before repeat... " show \ xxx depuración
+    \ cr ." terms{ before repeat... " show \ XXX INFORMER
   repeat  
   assert( depth 4 = )
-  \ cr ." antes de 2drop 2drop ... " show \ xxx depuración
+  \ cr ." antes de 2drop 2drop ... " show \ XXX INFORMER
   2drop 2drop
   restore_vocabularies
   ;
@@ -474,7 +469,7 @@ include autohipnosis_terms.fs
 
 also player_vocabulary definitions
 : #fin ( -- )
-  \ xxx pendiente
+  \ XXX TODO
   ;
 restore_vocabularies
 
@@ -494,18 +489,18 @@ variable valid  \ Contador de términos acertados en cada comando
   \ nt = Identificador de nombre del término.
   execute_nt  ( a ) valid++
   ;
-: (evaluate_command)
+: (evaluate_command)  ( -- )
   \ Analiza la fuente actual con los vocabularios activos,
   \ ejecutando las palabras reconocidas
   \ como términos asociados a una frase.
   begin   
-  \ cr ." (evaluate_command) 1 " show... \ xxx depuración
+  \ cr ." (evaluate_command) 1 " show... \ XXX INFORMER
   parse-name ?dup
-  \ cr ." (evaluate_command) 2 " show... \ xxx depuración
+  \ cr ." (evaluate_command) 2 " show... \ XXX INFORMER
   while   
-  \ cr ." (evaluate_command) 2a " show... \ xxx depuración
+  \ cr ." (evaluate_command) 2a " show... \ XXX INFORMER
   find-name ?dup
-  \ cr ." (evaluate_command) 3 " show... \ xxx depuración
+  \ cr ." (evaluate_command) 3 " show... \ XXX INFORMER
   if  execute_term  then
   repeat  drop
   ;
@@ -521,11 +516,12 @@ variable testing
   valid off  evaluate_command  valid @ 0<> 
   testing @ or
   ;
+s" > " sconstant prompt$
 : /command  ( -- u )
   \ Longitud máxima de un comando
-  cols
+  cols prompt$ nip - 1-
   ;
-: init_command_line
+: init_command_line  ( -- )
   \ Limpia la línea de comandos y sitúa el cursor.
   0 last_row at-xy trm+erase-line
   ;
@@ -534,9 +530,12 @@ create 'command /command chars allot align
   \ Acepta un comando del jugador.
   'command /command accept  'command swap
   ;
+: .prompt  ( -- )
+  prompt$ type
+  ;
 : command  ( -- a u )
   \ Prepara la pantalla y acepta un comando del jugador.
-  init_command_line (command)
+  init_command_line .prompt (command)
   ;
 
 \ }}} ##########################################################
@@ -544,16 +543,16 @@ create 'command /command chars allot align
 
 variable success?  \ ¿Se ha completado con éxito el juego?
 
-: the_happy_end
-  \ xxx pendiente
+: the_happy_end  ( -- )
+  \ XXX TODO
   success? on
   ;
 
 \ }}} ##########################################################
 \ Ayuda {{{
 
-: curiosities
-  \ xxx pendiente
+: curiosities  ( -- )
+  \ XXX TODO
   s" Curiosidades..." paragraph
   ;
 
@@ -581,9 +580,10 @@ variable success?  \ ¿Se ha completado con éxito el juego?
 : they_make$  ( -- a u )
   s{ s" forman" s" componen" }s
   ;
-: instructions_0
+: instructions_0  ( -- )
   \ Instrucciones sobre el objeto del juego.
-  s" El" s{ s" programa" s" juego" }s&
+  s{ s" El" s" Este" }s
+  s{ s" programa" s" juego" }s&
   s{ s" mostrará" s" imprimirá" }s&
   s" un texto" s& s" en la pantalla" s?&
   s" y" s&
@@ -591,18 +591,18 @@ variable success?  \ ¿Se ha completado con éxito el juego?
   s{ s" esperará" s" se quedará esperando" }s&
   s" una respuesta."  s&
   s{
-  s" El" s{ s" juego" s" objetivo" }s& s" consiste en" s&
-  s" Lo que" s{ s" has de" s" tienes que" s" hay que" s" debes" }s& s" hacer es" s&
-  s" El jugador" s{ s" debe" s" tiene que" }s&
-  s{ s" Tienes que" s" Debes" s" Has de" s" Hay que" }s
-  s" Tu" s{ s" objetivo" s" misión" }s& s{ s" es" s" será" s" consiste en" }s&
+    s" El" s{ s" juego" s" objetivo" }s& s" consiste en" s&
+    s" Lo que" s{ s" has de" s" tienes que" s" hay que" s" debes" }s& s" hacer es" s&
+    s" El jugador" s{ s" debe" s" tiene que" }s&
+    s{ s" Tienes que" s" Debes" s" Has de" s" Hay que" }s
+    s" Tu" s{ s" objetivo" s" misión" }s& s{ s" es" s" será" s" consiste en" }s&
   }s&
   s{ s" responder a" s" escribir una respuesta para" }s&
-  s" cada texto" s&
-  s{ s" con" s" usando" s" empleando" s" utilizando" s" incluyendo" }s&
-  s{ s" al menos" s" por lo menos" }s?&
-  s" un sustantivo"
-  s{ s" relacionado con" s" que tenga relación" }s&
+  s" cada texto," s&
+  s{ s" usando" s" empleando" s" utilizando" s" incluyendo" }s&
+  s{ s" como mínimo" s" al menos" s" por lo menos" }s&
+  s" un sustantivo" s& s" (en singular)" s?&
+  s{ s" relacionado" s" que tenga relación" }s& s" con" s&
   s{ s" el mismo" s" él" }s& comma+
   s" pero que no sea" s&
   s{ s" familia de" s" de la misma familia que" }s&
@@ -613,11 +613,14 @@ variable success?  \ ¿Se ha completado con éxito el juego?
   s{ s" del" s" de dicho" }s s" texto" s&
   }s& period+
   s" El proceso" s&
-  s{ s" se repetirá" s" continuará" s" no acabará" s" no terminará" }s&
+  s{  s" se repetirá" s" continuará"
+      s" no acabará" s" no terminará" 
+      s" seguirá" s" durará"
+  }s&
   s" hasta que todos los textos hayan sido mostrados y respondidos." s&
   paragraph
   ;
-: instructions_1
+: instructions_1  ( -- )
   \ Instrucciones sobre el abandono del juego.
   s{
   s" No es posible" leave$ s& the_game$ s& comma+ except$ s& pressing$ s&
@@ -630,9 +633,10 @@ variable success?  \ ¿Se ha completado con éxito el juego?
   s{ s" devolverá" s" hará regresar" }s&
   s{ s" a la línea de comandos" s" al intérprete" }s&
   s" de Forth." s&
+  \ XXX FIXME -- Ctrl+C return to the OS shell
   paragraph
   ;
-: instructions_2
+: instructions_2  ( -- )
   \ Instrucciones sobre el arranque del juego.
   s" Tanto para empezar a jugar ahora como para hacerlo tras haber"
   left$ s& the_game$ s&
@@ -642,10 +646,11 @@ variable success?  \ ¿Se ha completado con éxito el juego?
   s{ s" encontrar" s" dar con" s" acertar con" }s&
   s{ s" alguna" s" una" }s& s" que" s&
   s{ s" surta efecto" s" funcione" s" sirva" }s& period+
-  paragraph    ;
+  paragraph
+  ;
 : instructions  ( -- false )
-  \ xxx inacabado
-  page s" Instrucciones de Autohipnosis" paragraph
+  \ XXX inacabado
+  page s" Instrucciones de Autohipnosis" paragraph cr cr
   instructions_0
   instructions_1
   instructions_2  false
@@ -669,11 +674,11 @@ variable success?  \ ¿Se ha completado con éxito el juego?
   \ Texto del «menú».
   s" ¿" s{ menu_0$ menu_1$ }s+ s" ?" s+
   ;
-: .menu
+: .menu  ( -- )
   \ Imprime el «menú».
   menu$ paragraph
   ;
-: (evaluate_option)
+: (evaluate_option)  ( -- )
   \ Analiza la fuente actual con los vocabularios activos,
   \ ejecutando las palabras reconocidas.
   begin   parse-name ?dup
@@ -699,12 +704,12 @@ variable finished
 \ }}} ##########################################################
 \ Inicialización {{{
 
-: init/once
+: init/once  ( -- )
   \ Inicialización necesaria antes de la primera partida.
-  \ xxx pendiente
+  \ XXX TODO ?
   page
   ;
-: init/game
+: init/game  ( -- )
   \ Inicialización necesaria antes de cada partida.
   page .centered_title 10 seconds
   init_output_cursor  page
@@ -724,14 +729,14 @@ variable finished
   \ u = Número ordinal de la frase actual.
   dup .sentence ask
   ;
-: game
+: game  ( -- )
   \ Bucle de cada partida.
   #sentences @ dup 1
   do  i step  loop
   .sentence  \ Frase final
   the_happy_end
   ;
-: play
+: play  ( -- )
   \ Jugar una partida.
   init/game game   ;
 
@@ -743,26 +748,28 @@ variable finished
 also menu_vocabulary definitions
 
 \ Comando «instrucciones»:
+' instructions alias aclaración
 ' instructions alias ayuda
 ' instructions alias espera
 ' instructions alias esperad
 ' instructions alias esperar
 ' instructions alias espero
-' instructions alias ex
+' instructions alias ex  \ examina
 ' instructions alias examina
 ' instructions alias examinad
 ' instructions alias examinar
 ' instructions alias examino
 ' instructions alias examínate
 ' instructions alias examínome
-' instructions alias i
+' instructions alias explicación
+' instructions alias i  \ inventario
 ' instructions alias instrucciones
 ' instructions alias inventario
 ' instructions alias lee
 ' instructions alias leed
 ' instructions alias leer
 ' instructions alias leo
-' instructions alias m
+' instructions alias m  \ mirar
 ' instructions alias manual
 ' instructions alias mira
 ' instructions alias mirad
@@ -776,16 +783,25 @@ also menu_vocabulary definitions
 ' instructions alias registrad
 ' instructions alias registrar
 ' instructions alias registro
-' instructions alias x
+' instructions alias salida
+' instructions alias salidas
+' instructions alias x  \ salidas
 \ Comando «jugar»:
+' play alias abajo
 ' play alias arranca
 ' play alias arrancad 
 ' play alias arrancar 
 ' play alias arranco
+' play alias arriba
+' play alias baja
+' play alias bajad
+' play alias bajar
+' play alias bajo
 ' play alias comenzad
 ' play alias comenzar
 ' play alias comienza
 ' play alias comienzo
+' play alias e  \ este
 ' play alias ejecuta
 ' play alias ejecutad
 ' play alias ejecutar
@@ -794,17 +810,43 @@ also menu_vocabulary definitions
 ' play alias empezar
 ' play alias empieza
 ' play alias empiezo
+' play alias entra
+' play alias entrad
+' play alias entrar
+' play alias entro
+' play alias este
 ' play alias inicia
 ' play alias iniciad 
 ' play alias iniciar 
 ' play alias inicio
+' play alias juega
 ' play alias juego
 ' play alias jugad
 ' play alias jugar
+' play alias n  \ norte
+' play alias ne  \ noreste
+' play alias no  \ noroeste
+' play alias noreste
+' play alias noroeste
+' play alias norte
+' play alias o  \ oeste
+' play alias oeste
 ' play alias partida
 ' play alias probad
 ' play alias probar
 ' play alias pruebo
+' play alias s  \ sur
+' play alias se  \ sureste
+' play alias so  \ suroeste
+' play alias sube
+' play alias subid
+' play alias subir
+' play alias subo
+' play alias sudeste
+' play alias sudoeste
+' play alias sur
+' play alias sureste
+' play alias suroeste
 \ Comando «fin»:
 ' finish alias acaba
 ' finish alias acabad
@@ -865,24 +907,31 @@ restore_vocabularies
       s" Hasta" s{ s" otra" s" la vista" s" pronto" s" luego" s" más ver" }s&
   }s  period+
   ;
-: farewell
+: farewell  ( -- )
   page farewell$ paragraph space 2 seconds bye
   ;
 
-: main
+: main  ( -- )
   \ Bucle principal del juego.
-  init/once begin  menu  until farewell
+  init/once  begin  menu  until  farewell
   ;
 
 ' main alias autohipnosis
+' main alias abajo
 ' main alias arranca
 ' main alias arrancad
 ' main alias arrancar 
 ' main alias arranco
+' main alias arriba
+' main alias baja
+' main alias bajad
+' main alias bajar
+' main alias bajo
 ' main alias comenzad
 ' main alias comenzar
 ' main alias comienza
 ' main alias comienzo
+' main alias e  \ este
 ' main alias ejecuta
 ' main alias ejecutad
 ' main alias ejecutar
@@ -892,6 +941,11 @@ restore_vocabularies
 ' main alias empezar
 ' main alias empieza
 ' main alias empiezo
+' main alias entra
+' main alias entrad
+' main alias entrar
+' main alias entro
+' main alias este
 ' main alias inicia
 ' main alias iniciad
 ' main alias iniciar 
@@ -901,15 +955,32 @@ restore_vocabularies
 ' main alias juego
 ' main alias jugad
 ' main alias jugar
+' main alias n  \ norte
+' main alias ne  \ noreste
+' main alias no  \ noroeste
+' main alias noreste
+' main alias noroeste
+' main alias norte
+' main alias o  \ oeste
+' main alias oeste
 ' main alias partida
 ' main alias probad
 ' main alias probar
 ' main alias prueba
 ' main alias pruebo
+' main alias s  \ sur
+' main alias se  \ sureste
+' main alias so  \ suroeste
+' main alias sube
+' main alias subid
+' main alias subir
+' main alias subo
+' main alias sudeste
+' main alias sudoeste
+' main alias sur
+' main alias sureste
+' main alias suroeste
 ' main alias adelante
-' main alias ya
-' main alias vamos
-' main alias venga
 
 \ }}} ##########################################################
 \ Herramientas para depuración {{{
@@ -948,9 +1019,7 @@ Ideas:
 Modo de juego por puntos, siempre avanzando, un punto por
 acierto.
 
-xxx pendiente:
-
-Hacer variables los textos de las instrucciones y del presto.
+XXX TODO:
 
 Pedir confirmación de salida, pulsando la barra espaciadora.
 
