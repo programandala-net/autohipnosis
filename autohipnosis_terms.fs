@@ -1,28 +1,15 @@
 \ autohipnosis_terms.fs
 
-\ Este fichero es parte de
-\ «Autohipnosis»,
-\ un juego conversacional experimental.
+\ This file is part of «Autohipnosis»,
+\ an experimental interactive fiction in Spanish.
 
 \ http://programandala.net/es.programa.autohipnosis
 
-\ Copyright (C) 2012 Marcos Cruz (programandala.net)
+\ Copyright (C) 2012,2015 Marcos Cruz (programandala.net)
 
-\ Autohipnosis is free software; you can redistribute it
-\ and/or modify it under the terms of the GNU General Public
-\ License as published by the Free Software Foundation;
-\ either version 2 of the License, or (at your option) any
-\ later version.
-
-\ Autohipnosis is distributed in the hope that it will be
-\ useful, but WITHOUT ANY WARRANTY; without even the implied
-\ warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-\ PURPOSE.  See the GNU General Public License for more
-\ details.
-
-\ You should have received a copy of the GNU General Public
-\ License along with this program; if not, see
-\ http://www.gnu.org/licenses .
+\ You may do whatever you want with this work, so long as you
+\ retain the copyright notice(s) and this license in all
+\ redistributed copies and derived works. There is no warranty.
 
 «ahoraestas» terms{
 momento instante sazón sazÓn presente presencia contemporaneidad actualidad
@@ -40,7 +27,7 @@ sueño sueÑo soñolencia soÑolencia
 
 «vasairentr» terms{
 desplazamiento progreso progresión progresiÓn camino dirección direcciÓn sentido evolución evoluciÓn transformación transformaciÓn trasformación trasformaciÓn
-introducción introducciÓn penetración penetraciÓn
+introducción introducciÓn puerta penetración penetraciÓn
 inicio arranque comienzo
 mente sueño sueÑo conciencia consciencia relajación relajaciÓn relax
 }terms
@@ -73,7 +60,8 @@ comodidad confort descanso placer gozo goce satisfacción satisfacciÓn disfrute
 
 «vasaflojan» terms{
 desplazamiento progreso progresión progresiÓn camino dirección direcciÓn sentido evolución evoluciÓn transformación transformaciÓn trasformación trasformaciÓn
-laxitud abandono flojera debilidad relajación relajaciÓn relax blandura calma paz tranquilidad quietud
+laxitud abandono flojera
+debilidad relajación relajaciÓn relax blandura calma paz tranquilidad quietud 
 poder motor agente causa fuerza energía energÍa masa movimiento trabajo potencia
 }terms
 
@@ -82,6 +70,7 @@ desplazamiento progreso progresión progresiÓn camino dirección direcciÓn sen
 consciencia responsabilidad sentido sensación sensaciÓn percepción percepciÓn
 conciencia consciencia mente cabeza cerebro pensamiento subconsciente
 interior
+transporte trasporte porte llegada venida
 }terms
 
 «teestatray» terms{
@@ -109,17 +98,18 @@ laxitud abandono flojera debilidad relajación relajaciÓn relax blandura calma 
 momento instante sazón sazÓn presente presencia contemporaneidad actualidad 
 requisito conveniencia posibilidad capacidad obligación obligaciÓn 
 conciencia consciencia presencia descanso
-alarma atención atenciÓn concentración concentraciÓn vigilancia cuidado
+alarma atención atenciÓn concentración concentraciÓn vigilancia cuidado estrés tensión
 }terms
 
 «nonecesita» terms{ 
 requisito conveniencia posibilidad capacidad obligación obligaciÓn
-relajación relajaciÓn relax tranquilidad quietud serenidad descanso calma paz
+alarma alerta atención atenciÓn concentración concentraciÓn vigilancia cuidado estrés
 }terms
 
 «simplement» terms{
 sencillez simplicidad facilidad
 licencia voluntad deseo concesión concesiÓn
+posibilidad
 suceso acontecimiento efecto consecuencia
 transformación transformaciÓn trasformación trasformaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis
 requisito conveniencia obligación obligaciÓn deber importancia
@@ -141,7 +131,7 @@ requisito conveniencia deseo voluntad
 }terms
 
 «yvasentran» terms{
-introducción introducciÓn penetración penetraciÓn acceso
+introducción introducciÓn puerta penetración penetraciÓn acceso
 crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio progreso
 situación situaciÓn brete
 modo manera
@@ -200,7 +190,7 @@ favor beneficio ayuda servicio colaboración colaboraciÓn herramienta auxilio s
 crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio progreso
 situación situaciÓn brete
 importancia gravedad
-introducción introducciÓn penetración penetraciÓn
+introducción introducciÓn puerta penetración penetraciÓn
 intensidad 
 }terms
 
@@ -305,7 +295,7 @@ cuerpo
 }terms
 
 «conperfume» terms{
-nariz olfato olor aire líquido lÍquido flor
+nariz olfato olor aroma aire líquido lÍquido flor
 }terms
 
 «yconsabore» terms{
@@ -348,7 +338,7 @@ continuación continuaciÓn duración duraciÓn
 progreso progresión progresiÓn evolución evoluciÓn transformación transformaciÓn trasformación trasformaciÓn
 crisis mutación mutaciÓn cambio
 incremento tamaño tamaÑo crecimiento
-intensidad importancia fundamento penetración penetraciÓn
+intensidad importancia fundamento puerta penetración penetraciÓn
 }terms
 
 «porqueesla» terms{
@@ -447,13 +437,13 @@ vuelo aire levitación levitaciÓn subida ascenso
 vuelo aire levitación levitaciÓn subida ascenso
 amigo reunión reuniÓn unión uniÓn camino viaje movimiento desplazamiento
 transformación transformaciÓn trasformación trasformaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis
-importancia gravedad interior penetración penetraciÓn
+importancia gravedad interior puerta penetración penetraciÓn
 }terms
 
 «cadavezmas» terms{
 tiempo velocidad tamaño tamaÑo
 evolución evoluciÓn progreso crecimiento 
-importancia gravedad interior penetración penetraciÓn
+importancia gravedad interior puerta penetración penetraciÓn
 }terms
 
 «enesaespec» terms{
@@ -609,7 +599,7 @@ todo paso pie descenso bajada
 «nosvacondu» terms{
 transporte trasporte viaje 
 desplazamiento camino dirección direcciÓn sentido 
-introducción introducciÓn penetración penetraciÓn hundimiento
+introducción introducciÓn puerta penetración penetraciÓn hundimiento
 incremento aumento crecimiento desarrollo 
 }terms
 
@@ -630,7 +620,7 @@ paso escalón escalÓn dúo dÚo par pareja otro descenso bajada tres
 «sientescom» terms{
 sensación sensaciÓn percepción percepciÓn
 manera modo estilo
-introducción introducciÓn penetración penetraciÓn hundimiento
+introducción introducciÓn puerta penetración penetraciÓn hundimiento
 incremento aumento crecimiento desarrollo
 }terms
 
@@ -709,7 +699,7 @@ consejo aviso receta lema mantra máxima mÁxima
 mente imaginación imaginaciÓn pensamiento creatividad
 ventaja provecho beneficio fruto
 intensidad importancia fundamento 
-entrada penetración penetraciÓn hundimiento filtración filtraciÓn contagio fusión fusiÓn
+entrada puerta penetración penetraciÓn hundimiento filtración filtraciÓn contagio fusión fusiÓn
 cerebro
 }terms
 
@@ -747,6 +737,7 @@ imaginación imaginaciÓn idea cabeza cerebro
 «yahora1» terms{
 momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 inicio comienzo
+continuación continuaciÓn
 }terms
 
 «puedesirre» terms{
