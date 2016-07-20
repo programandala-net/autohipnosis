@@ -5,7 +5,7 @@
 \ This is the main file of «Autohipnosis»,
 \ an experimental interactive fiction in Spanish.
 
-\ Version 0.1.0+201601171639
+\ Version 0.2.0+201607201705
 
 \ http://programandala.net/es.programa.autohipnosis
 
@@ -463,39 +463,39 @@ variable success?  \ flag
 
 : instructions-0  ( -- )
   s{ s" El" s" Este" }s game$ s&
-  s{ s" mostrará" s" imprimirá" }s&
-  s" un texto" s& s" en la pantalla" s?&
+  s{ s" mostrará" s" imprimirá" }s bs&
+  s" un texto" s& s" en la pantalla" s? bs&
   s" y" s&
-  s{ s" a continuación" s" después" s" seguidamente" }s?&
-  s{ s" esperará" s" se quedará esperando" }s&  s" una respuesta." s&
+  s{ s" a continuación" s" después" s" seguidamente" }s? bs&
+  s{ s" esperará" s" se quedará esperando" }s bs&  s" una respuesta." s&
   s{
-    \ s" El" s{ s" juego" s" objetivo" }s& s" consiste en" s& \ XXX OLD
+    \ s" El" s{ s" juego" s" objetivo" }s bs& s" consiste en" s& \ XXX OLD
     s" El objetivo consiste en"
-    s" Lo que" s{ s" has de" s" tienes que" s" hay que" s" debes" }s& s" hacer es" s&
-    s" El jugador" s{ s" debe" s" tiene que" }s&
+    s" Lo que" s{ s" has de" s" tienes que" s" hay que" s" debes" }s bs& s" hacer es" s&
+    s" El jugador" s{ s" debe" s" tiene que" }s bs&
     s{ s" Tienes que" s" Debes" s" Has de" s" Hay que" }s
-    s" Tu" s{ s" objetivo" s" misión" }s& s{ s" es" s" será" s" consiste en" }s&
-  }s&
-  s{ s" responder a" s" escribir una respuesta para" }s&
+    s" Tu" s{ s" objetivo" s" misión" }s bs& s{ s" es" s" será" s" consiste en" }s bs&
+  }s bs&
+  s{ s" responder a" s" escribir una respuesta para" }s bs&
   s" cada texto," s&
-  s{ s" usando" s" empleando" s" utilizando" s" incluyendo" }s&
-  s{ s" como mínimo" s" al menos" s" por lo menos" }s&
-  s" un sustantivo" s& s" (en singular)" s?&
-  s{ s" relacionado" s" que tenga relación" }s& s" con" s&
-  s{ s" el mismo" s" él" }s& comma+
+  s{ s" usando" s" empleando" s" utilizando" s" incluyendo" }s bs&
+  s{ s" como mínimo" s" al menos" s" por lo menos" }s bs&
+  s" un sustantivo" s& s" (en singular)" s? bs&
+  s{ s" relacionado" s" que tenga relación" }s bs& s" con" s&
+  s{ s" el mismo" s" él" }s bs& comma+
   s" pero que no sea" s&
-  s{ s" familia de" s" de la misma familia que" }s&
+  s{ s" familia de" s" de la misma familia que" }s bs&
   s" alguna de las palabras" s&
   s{
   s" que lo" they-make$ s&
-  s" que" they-make$ s&{ s" el" s" dicho" }s& s" texto" s&
+  s" que" they-make$ bs& s{ s" el" s" dicho" }s bs& s" texto" s&
   s{ s" del" s" de dicho" }s s" texto" s&
-  }s& period+
+  }s bs& period+
   s" El proceso" s&
   s{  s" se repetirá" s" continuará"
       s" no acabará" s" no terminará"
       s" seguirá" s" durará"
-  }s&
+  }s bs&
   s" hasta que todos los textos hayan sido mostrados y respondidos." s&
   paragraph  ;
   \ Instructions on the game goal.
@@ -506,11 +506,11 @@ variable success?  \ flag
   s" El" game$ s& s" no puede ser" s& left$ s& comma+ except$ s& pressing$ s&
   s" La única" way$ s& s" de" s& leave$ s& the-game$ s& s" es pulsar" s&
   }s
-  s{ s" la combinación de teclas" s" el atajo de teclado" s" las teclas" }s&
+  s{ s" la combinación de teclas" s" el atajo de teclado" s" las teclas" }s bs&
   s" «Ctrl»+«C»," s&
-  s{ s" lo que" s" lo cual" }s& s" te" s&
-  s{ s" devolverá" s" hará regresar" }s&
-  s{ s" a la línea de comandos" s" al intérprete" }s&
+  s{ s" lo que" s" lo cual" }s bs& s" te" s&
+  s{ s" devolverá" s" hará regresar" }s bs&
+  s{ s" a la línea de comandos" s" al intérprete" }s bs&
   s" de Forth." s&
   paragraph  ;
   \ Instructions on leaving the game.
@@ -519,12 +519,12 @@ variable success?  \ flag
 : instructions-2  ( -- )
   s" Tanto para empezar a jugar ahora como para hacerlo tras haber"
   left$ s& the-game$ s&
-  s" puedes" s& s{ s" usar" s" probar" }s&
+  s" puedes" s& s{ s" usar" s" probar" }s bs&
   s" cualquier palabra que" s&
-  s{ s" se te ocurra" s" te parezca" }s& comma+ s" hasta" s&
-  s{ s" encontrar" s" dar con" s" acertar con" }s&
-  s{ s" alguna" s" una" }s& s" que" s&
-  s{ s" surta efecto" s" funcione" s" sirva" }s& period+
+  s{ s" se te ocurra" s" te parezca" }s bs& comma+ s" hasta" s&
+  s{ s" encontrar" s" dar con" s" acertar con" }s bs&
+  s{ s" alguna" s" una" }s bs& s" que" s&
+  s{ s" surta efecto" s" funcione" s" sirva" }s bs& period+
   paragraph  ;
   \ Intructions on the game start.
 
@@ -538,17 +538,17 @@ variable success?  \ flag
 
 : menu-0$  ( -- ca len )
   s" Qué"
-  s{ s{ s" quieres" s" deseas" }s s" hacer" s?&
-  s" ordenas" }s&  ;
+  s{ s{ s" quieres" s" deseas" }s s" hacer" s? bs&
+  s" ordenas" }s bs&  ;
   \ First version of the menu text.
 
 : menu-1$  ( -- ca len )
   s" Cuáles son tus"
-  s{ s" órdenes" s" instrucciones" }s&  ;
+  s{ s" órdenes" s" instrucciones" }s bs&  ;
   \ Second version of the menu text.
 
 : menu$  ( -- ca len )
-  s" ¿" s{ menu-0$ menu-1$ }s+ s" ?" s+  ;
+  s" ¿" s{ menu-0$ menu-1$ }s bs+ s" ?" s+  ;
   \ Menu text.
 
 : .menu  ( -- )
@@ -617,7 +617,7 @@ variable finished  \ flag: quit the program?
 
 : farewell$  ( -- ca len )
   s{  s" Adiós"
-      s" Hasta" s{ s" otra" s" la vista" s" pronto" s" luego" s" más ver" }s&
+      s" Hasta" s{ s" otra" s" la vista" s" pronto" s" luego" s" más ver" }s bs&
   }s  period+  ;
 
 : farewell  ( -- )
