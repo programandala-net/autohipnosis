@@ -1,7 +1,8 @@
 \ autohipnosis_terms.fs
 
 \ This file is part of «Autohipnosis»,
-\ an experimental interactive fiction in Spanish.
+\ an experimental interactive fiction in Spanish,
+\ written in Forth.
 
 \ http://programandala.net/es.programa.autohipnosis
 
@@ -21,14 +22,16 @@ posibilidad postura situación situaciÓn gesto actitud satisfacción satisfacci
 capacidad poder posibilidad 
 ocultamiento encubrimiento obstrucción obstrucciÓn
 apagón apagÓn ceguera ciego oscuridad niebla
+párpado
+cierre cerrazón
 vista mirada visión visiÓn iris pupila párpado pÁrpado
 sueño sueÑo soñolencia soÑolencia
 }terms
 
 «vasairentr» terms{
 desplazamiento progreso progresión progresiÓn camino dirección direcciÓn sentido evolución evoluciÓn transformación transformaciÓn trasformación trasformaciÓn
-introducción introducciÓn puerta penetración penetraciÓn
-inicio arranque comienzo
+entrada introducción introducciÓn puerta penetración penetraciÓn
+inicio arranque comienzo empiece
 mente sueño sueÑo conciencia consciencia relajación relajaciÓn relax
 }terms
 
@@ -85,7 +88,7 @@ categoría categorÍa clase grupo clasificación clasificaciÓn especie conjunto
 sentimiento percepción percepciÓn intucición intuciciÓn emoción emociÓn
 yo mismo identidad
 momento instante sazón sazÓn presente presencia contemporaneidad actualidad
-requisito conveniencia
+requisito conveniencia menester
 prueba intento vivencia
 }terms
 
@@ -96,13 +99,13 @@ laxitud abandono flojera debilidad relajación relajaciÓn relax blandura calma 
 
 «ahoranonec» terms{
 momento instante sazón sazÓn presente presencia contemporaneidad actualidad 
-requisito conveniencia posibilidad capacidad obligación obligaciÓn 
+requisito conveniencia posibilidad capacidad obligación obligaciÓn menester
 conciencia consciencia presencia descanso
 alarma atención atenciÓn concentración concentraciÓn vigilancia cuidado estrés tensión
 }terms
 
 «nonecesita» terms{ 
-requisito conveniencia posibilidad capacidad obligación obligaciÓn
+requisito conveniencia posibilidad capacidad obligación obligaciÓn menester
 alarma alerta atención atenciÓn concentración concentraciÓn vigilancia cuidado estrés
 }terms
 
@@ -112,7 +115,7 @@ licencia voluntad deseo concesión concesiÓn
 posibilidad
 suceso acontecimiento efecto consecuencia
 transformación transformaciÓn trasformación trasformaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis
-requisito conveniencia obligación obligaciÓn deber importancia
+requisito conveniencia obligación obligaciÓn deber importancia menester
 }terms
 
 «porquetuin» terms{
@@ -127,7 +130,7 @@ comodidad confort placer gozo goce satisfacción satisfacciÓn disfrute
 «tuinconsc1» terms{
 conciencia consciencia subconsciente mente
 fundamento herramienta
-requisito conveniencia deseo voluntad
+requisito conveniencia deseo voluntad menester
 }terms
 
 «yvasentran» terms{

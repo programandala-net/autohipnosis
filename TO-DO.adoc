@@ -1,0 +1,11 @@
+= Autohipnosis TO-DO
+:revdate: 2016-01-16
+
+2016-01-14:
+
+Deactivate the tab completion.
+
+2016-01-16:
+
+Ask for confirmation exit, pressing the space bar.
+

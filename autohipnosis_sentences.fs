@@ -1,7 +1,8 @@
 \ autohipnosis_sentences.fs
 
 \ This file is part of «Autohipnosis»,
-\ an experimental interactive fiction in Spanish.
+\ an experimental interactive fiction in Spanish,
+\ written in Forth.
 
 \ http://programandala.net/es.programa.autohipnosis
 
