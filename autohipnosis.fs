@@ -5,7 +5,7 @@
 \ This is the main file of «Autohipnosis»,
 \ an experimental interactive fiction in Spanish.
 
-\ Version 0.1.0+201501170219
+\ Version 0.1.0+201601171639
 
 \ http://programandala.net/es.programa.autohipnosis
 
@@ -49,21 +49,21 @@ require ffl/trm.fs
 \ From the Galope library
 \ (http://programandala.net/en.program.galope.html)
 
-require galope/sb.fs  \ Circular string buffer
+require galope/sb.fs                \ circular string buffer
 \ ' bs+ alias s+
 ' bs& alias s&
 \ ' bs" alias s" immediate
 1024 heap_sb
 
-require galope/random_strings.fs
-require galope/xy.fs  \ 'xy'
-require galope/row.fs  \ 'row'
-require galope/column.fs  \ 'column'
-require galope/at-x.fs  \ 'at-x'
-require galope/print.fs  \ justified print
-require galope/randomize.fs  \ 'randomize'
-require galope/seconds.fs  \ 'seconds'
-require galope/two-drops.fs  \ '2drops'
+require galope/random_strings.fs    \ random strings
+require galope/xy.fs                \ 'xy'
+require galope/row.fs               \ 'row'
+require galope/column.fs            \ 'column'
+require galope/at-x.fs              \ 'at-x'
+require galope/print.fs             \ justified print
+require galope/randomize.fs         \ 'randomize'
+require galope/seconds.fs           \ 'seconds'
+require galope/two-drops.fs         \ '2drops'
 
 \ }}} ==========================================================
 \ Stock words {{{
@@ -76,10 +76,10 @@ require galope/two-drops.fs  \ '2drops'
 ' false alias [false]  immediate
 
 : period+  ( ca1 len1 -- ca2 len2 )  s" ." s+  ;
-  \ Add a full stop at the end of a string _ca1 len1_.
+  \ Add a full stop at the end of string _ca1 len1_.
 
 : comma+  ( ca1 len1 -- ca2 len2 )  s" ," s+  ;
-  \ Add a comma at the end of a string _ca1 len1_.
+  \ Add a comma at the end of string _ca1 len1_.
 
 \ }}} ==========================================================
 \ Vocabularies {{{
@@ -107,11 +107,11 @@ restore-vocabularies
 : last-row  ( -- u )  rows 1-  ;
 
 false  [if]
-\ XXX INFORMER:
-cr ." rows x cols = " rows . cols .
-cr ." last row = " last-row .
-cr ." last col = " last-col .
-wait
+  \ XXX INFORMER:
+  cr ." rows x cols = " rows . cols .
+  cr ." last row = " last-row .
+  cr ." last col = " last-col .
+  wait
 [then]
 
 : no-window  ( -- )
@@ -174,28 +174,28 @@ variable indent-first-line-too?
 \ }}} ==========================================================
 \ Title {{{
 
-: title_row  ( col -- )
+: title-row  ( col -- )
   cr at-x  ;
   \ Do a carriage return and put the cursor at column _col_.
 
 : .title  ( -- )
   column
-  ."   _" dup title_row
-  ."  /_)    _)_ _ ( _  o  _   _   _   _ o  _" dup title_row
-  ." / / (_( (_ (_) ) ) ( )_) ) ) (_) (  ( ("  dup title_row
-  ."                     (            _)   _)" title_row  ;
+  ."   _" dup title-row
+  ."  /_)    _)_ _ ( _  o  _   _   _   _ o  _" dup title-row
+  ." / / (_( (_ (_) ) ) ( )_) ) ) (_) (  ( ("  dup title-row
+  ."                     (            _)   _)" title-row  ;
   \ Print the main title at the current cursor position.
 
-40 constant title_width
-4 constant title_height
+40 constant title-width
+4 constant title-height
 
 : margin  ( u1 u2 -- u3 )  - 2/  ;
   \ Margin needed to center a text of _u1_ characters or rows on on a
   \ screen of _u2_ columns or rows.
 
-: .centered_title  ( -- )
-  cols title_width margin
-  rows title_height margin
+: .centered-title  ( -- )
+  cols title-width margin
+  rows title-height margin
   at-xy .title  ;
   \ Print the title centered on the screen.
 
@@ -208,7 +208,7 @@ variable indent-first-line-too?
 : greeting  ( -- )
   page
   s" Pulsa una tecla para empezar" center-type
-  .centered_title  ;
+  .centered-title  ;
 
 \ }}} ==========================================================
 \ Data {{{
@@ -272,17 +272,17 @@ sentences,  \ compile the data
   + true swap c!  ;
   \ Associate a sentence id _u_ to a term whose body is _a_.
 
-: execute_nt  ( i*x nt -- j*x )
+: execute-nt  ( i*x nt -- j*x )
   name>int execute  ;
   \ Execute the interpretation semantics of _nt_.
 
-: execute_latest  ( i*x -- j*x )
-  latest execute_nt  ;
+: execute-latest  ( i*x -- j*x )
+  latest execute-nt  ;
   \ Execute the interpretation behaviour of the most recent word
   \ defined.
 
-: update_term  ( u nt -- )
-  execute_nt  ( u a )  associate  ;
+: update-term  ( u nt -- )
+  execute-nt  ( u a )  associate  ;
   \ Associate a term _nt_ to a sentence _u_.
 
 ' variable alias term
@@ -292,42 +292,42 @@ sentences,  \ compile the data
 \ ' create alias variablx \ XXX try
 \ XXX FIXME using 'create' instead of 'variable' causes an error
 
-: create_term_word  ( ca len -- )
+: create-term-word  ( ca len -- )
   nextname term  ;
   \ Create a word for term _ca len_.
 
-: create_term_array  ( -- )
+: create-term-array  ( -- )
   here #sentences @ dup allot align erase  ;
   \ Create the array that holds the sentence ids a term is
   \ associated to: one byte per every possible sentence.
 
-: create_term  ( ca len -- )
-  create_term_word create_term_array  ;
+: create-term  ( ca len -- )
+  create-term-word create-term-array  ;
   \ Create a term _ca len_, which will work as a variable but with a
   \ larger body: one byte for every defined sentence.
 
-: init_term  ( u -- )
-  execute_latest associate  ;
+: init-term  ( u -- )
+  execute-latest associate  ;
   \ Init the most recently created term, associating it to sentence
   \ _u_.
 
 : new-term  ( u ca len -- )
-  create_term init_term  ;
+  create-term init-term  ;
   \ Create a new term _ca len_ and associate it to sentence _u_.
 
-: another_term  ( u ca len -- )
+: another-term  ( u ca len -- )
   2dup find-name  ?dup
-  if  nip nip update_term  else  new-term  then  ;
+  if  nip nip update-term  else  new-term  then  ;
   \ Create or update a term _ca len_ associated to a sentence _u_.
 
-: parse_term  ( "name" -- ca len )
+: parse-term  ( "name" -- ca len )
   begin   parse-name dup 0=
   while   2drop refill 0= abort" Error en el código fuente: falta un '}terms'"
   repeat  ;
   \ Parse the next term.
 
-: another_term?  ( "name" -- ca len f )
-  parse_term 2dup s" }terms" compare  ;
+: another-term?  ( "name" -- ca len f )
+  parse-term 2dup s" }terms" compare  ;
   \ Is there another term in the list?  Parse a word and check if it's
   \ the last term associated to a sentence. Return the parsed word _ca
   \ len_; _f_ is true if it's not te end of the list.
@@ -336,9 +336,9 @@ sentences,  \ compile the data
   only game-vocabulary also player-vocabulary definitions
 \  assert( depth 1 = ) \ XXX INFORMER
   begin
-    dup another_term? ( u u a1 u1 f )
+    dup another-term? ( u u a1 u1 f )
 \    assert( depth 5 = ) \ XXX INFORMER
-  while   another_term
+  while   another-term
 \    assert( depth 1 = ) \ XXX INFORMER
   repeat
 \  assert( depth 4 = ) \ XXX INFORMER
@@ -370,13 +370,13 @@ variable valid      \ counter: valid terms per command
   \ Update the score. _a_ is the body of a term associated to a
   \ sentence.
 
-: execute_term  ( nt -- )
-  execute_nt  ( a ) valid++  ;
+: execute-term  ( nt -- )
+  execute-nt  ( a ) valid++  ;
   \ Execute a term _nt_ associated to a sentence.
 
 : (evaluate-command)  ( -- )
   begin   parse-name ?dup
-  while   find-name ?dup if  execute_term  then
+  while   find-name ?dup if  execute-term  then
   repeat  drop  ;
   \ Parse the source with the current search order:
   \ words recognized will be executed as terms associated to a
@@ -437,7 +437,8 @@ variable success?  \ flag
   \ XXX TODO
 
 : game$  ( -- ca len )
-  s{ s" juego" s" programa" }s  ;
+  \ s{ s" juego" s" programa" }s  ;  \ XXX OLD
+  s" programa"  ;
 
 : the-game$  ( -- ca len )
   s" el" game$ s&  ;
@@ -457,18 +458,19 @@ variable success?  \ flag
 : pressing$  ( -- ca len )
   s{ s" pulsando" s" mediante" }s  ;
 
-: they_make$  ( -- ca len )
+: they-make$  ( -- ca len )
   s{ s" forman" s" componen" }s  ;
 
 : instructions-0  ( -- )
-  s{ s" El" s" Este" }s s{ s" programa" s" juego" }s&
+  s{ s" El" s" Este" }s game$ s&
   s{ s" mostrará" s" imprimirá" }s&
   s" un texto" s& s" en la pantalla" s?&
   s" y" s&
   s{ s" a continuación" s" después" s" seguidamente" }s?&
   s{ s" esperará" s" se quedará esperando" }s&  s" una respuesta." s&
   s{
-    s" El" s{ s" juego" s" objetivo" }s& s" consiste en" s&
+    \ s" El" s{ s" juego" s" objetivo" }s& s" consiste en" s& \ XXX OLD
+    s" El objetivo consiste en"
     s" Lo que" s{ s" has de" s" tienes que" s" hay que" s" debes" }s& s" hacer es" s&
     s" El jugador" s{ s" debe" s" tiene que" }s&
     s{ s" Tienes que" s" Debes" s" Has de" s" Hay que" }s
@@ -485,8 +487,8 @@ variable success?  \ flag
   s{ s" familia de" s" de la misma familia que" }s&
   s" alguna de las palabras" s&
   s{
-  s" que lo" they_make$ s&
-  s" que" they_make$ s&{ s" el" s" dicho" }s& s" texto" s&
+  s" que lo" they-make$ s&
+  s" que" they-make$ s&{ s" el" s" dicho" }s& s" texto" s&
   s{ s" del" s" de dicho" }s s" texto" s&
   }s& period+
   s" El proceso" s&
@@ -557,7 +559,7 @@ variable success?  \ flag
 
 : (evaluate-option)  ( -- )
   begin   parse-name ?dup
-  while   find-name ?dup   if  execute_nt  then
+  while   find-name ?dup   if  execute-nt  then
   repeat  drop  ;
   \ Parse the current source, executing only the recognized
   \ words.
