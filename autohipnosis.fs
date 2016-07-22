@@ -5,7 +5,7 @@
 \ This is the main file of «Autohipnosis»,
 \ an experimental interactive fiction in Spanish.
 
-\ Version 0.2.0+201607201705
+\ Version 0.2.0+201607221228
 
 \ http://programandala.net/es.programa.autohipnosis
 
@@ -49,21 +49,22 @@ require ffl/trm.fs
 \ From the Galope library
 \ (http://programandala.net/en.program.galope.html)
 
-require galope/sb.fs                \ circular string buffer
+require galope/at-x.fs                    \ 'at-x'
+require galope/column.fs                  \ 'column'
+require galope/fifty-percent-nullify.fs   \ `50%nullify`
+require galope/print.fs                   \ justified print
+require galope/random_strings.fs          \ random strings
+require galope/randomize.fs               \ 'randomize'
+require galope/row.fs                     \ 'row'
+require galope/sb.fs                      \ circular string buffer
+require galope/seconds.fs                 \ 'seconds'
+require galope/two-drops.fs               \ '2drops'
+require galope/xy.fs                      \ 'xy'
+
 \ ' bs+ alias s+
 ' bs& alias s&
 \ ' bs" alias s" immediate
 1024 heap_sb
-
-require galope/random_strings.fs    \ random strings
-require galope/xy.fs                \ 'xy'
-require galope/row.fs               \ 'row'
-require galope/column.fs            \ 'column'
-require galope/at-x.fs              \ 'at-x'
-require galope/print.fs             \ justified print
-require galope/randomize.fs         \ 'randomize'
-require galope/seconds.fs           \ 'seconds'
-require galope/two-drops.fs         \ '2drops'
 
 \ }}} ==========================================================
 \ Stock words {{{
@@ -464,7 +465,7 @@ variable success?  \ flag
 : instructions-0  ( -- )
   s{ s" El" s" Este" }s game$ s&
   s{ s" mostrará" s" imprimirá" }s bs&
-  s" un texto" s& s" en la pantalla" s? bs&
+  s" un texto" s& s" en la pantalla" 50%nullify bs&
   s" y" s&
   s{ s" a continuación" s" después" s" seguidamente" }s? bs&
   s{ s" esperará" s" se quedará esperando" }s bs&  s" una respuesta." s&
@@ -480,7 +481,7 @@ variable success?  \ flag
   s" cada texto," s&
   s{ s" usando" s" empleando" s" utilizando" s" incluyendo" }s bs&
   s{ s" como mínimo" s" al menos" s" por lo menos" }s bs&
-  s" un sustantivo" s& s" (en singular)" s? bs&
+  s" un sustantivo" s& s" (en singular)" 50%nullify bs&
   s{ s" relacionado" s" que tenga relación" }s bs& s" con" s&
   s{ s" el mismo" s" él" }s bs& comma+
   s" pero que no sea" s&
@@ -538,7 +539,7 @@ variable success?  \ flag
 
 : menu-0$  ( -- ca len )
   s" Qué"
-  s{ s{ s" quieres" s" deseas" }s s" hacer" s? bs&
+  s{ s{ s" quieres" s" deseas" }s s" hacer" 50%nullify bs&
   s" ordenas" }s bs&  ;
   \ First version of the menu text.
 
