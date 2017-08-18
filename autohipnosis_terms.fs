@@ -39,6 +39,7 @@ mente sueño sueÑo conciencia consciencia relajación relajaciÓn relax
 objetivo motivo finalidad destino razón razÓn
 corazón corazÓn mente entraña entraÑa
 desplazamiento movimiento traslado expulsión expulsiÓn transferencia trasferencia transmisión transmisiÓn trasmisión trasmisiÓn
+descarga vuelque volcado trasvase
 pensamiento mente percepción percepciÓn
 profundidad entraña entraÑa
 }terms

@@ -5,7 +5,7 @@
 \ This is the main file of «Autohipnosis»,
 \ an experimental interactive fiction in Spanish.
 
-\ Version 0.4.0+201708182101
+\ Version 0.5.0+201708182104
 
 \ http://programandala.net/es.programa.autohipnosis
 
