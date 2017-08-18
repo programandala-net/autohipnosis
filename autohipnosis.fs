@@ -5,12 +5,12 @@
 \ This is the main file of «Autohipnosis»,
 \ an experimental interactive fiction in Spanish.
 
-\ Version 0.3.0+201708182027
+\ Version 0.3.0+201708182048
 
 \ http://programandala.net/es.programa.autohipnosis
 
-\ }}} ==========================================================
-\ Author and License {{{
+\ ==============================================================
+\ Author and License {{{1
 
 \ Author: Marcos Cruz (programandala.net), 2012, 2015, 2016, 2017.
 
@@ -19,7 +19,7 @@
 \ license in all redistributed copies and derived works.  There is no
 \ warranty.
 
-\ }}} ==========================================================
+\ ==============================================================
 
 \ This program is written in Forth for the Gforth system:
 \ <http://gnu.org/software/gforth>
@@ -30,13 +30,13 @@
 \ Information on text based games (in Spanish):
 \ <http://caad.es>
 
-\ }}} ==========================================================
-\ Stack notation  {{{
+\ ==============================================================
+\ Stack notation {{{1
 
 \ XXX TODO
 
-\ }}} ==========================================================
-\ Requirements {{{
+\ ==============================================================
+\ Requirements {{{1
 
 s" PWD" getenv fpath also-path
 
@@ -49,66 +49,67 @@ require ffl/trm.fs
 \ From the Galope library
 \ (http://programandala.net/en.program.galope.html)
 
-require galope/at-x.fs                    \ 'at-x'
-require galope/column.fs                  \ 'column'
-require galope/fifty-percent-nullify.fs   \ `50%nullify`
-require galope/print.fs                   \ justified print
-require galope/s-curly-bracket.fs         \ `s{`, `}s`.
-require galope/s-plus.fs                  \ 's+'
-require galope/randomize.fs               \ 'randomize'
-require galope/row.fs                     \ 'row'
-require galope/sb.fs                      \ circular string buffer
-require galope/seconds.fs                 \ 'seconds'
-require galope/two-drops.fs               \ '2drops'
-require galope/xy.fs                      \ 'xy'
+require galope/at-x.fs                  \ 'at-x'
+require galope/column.fs                \ 'column'
+require galope/fifty-percent-nullify.fs \ `50%nullify`
+require galope/print.fs                 \ justified print
+require galope/s-curly-bracket.fs       \ `s{`, `}s`.
+require galope/s-plus.fs                \ 's+'
+require galope/randomize.fs             \ 'randomize'
+require galope/row.fs                   \ 'row'
+require galope/sb.fs                    \ circular string buffer
+require galope/seconds.fs               \ 'seconds'
+require galope/two-drops.fs             \ '2drops'
+require galope/xy.fs                    \ 'xy'
 
 \ ' bs+ alias s+
 ' bs& alias s&
 \ ' bs" alias s" immediate
 1024 heap_sb
 
-\ }}} ==========================================================
-\ Stock words {{{
+\ ==============================================================
+\ Stock words {{{1
 
-: wait  ( -- )  key drop  ;
-: show  ( -- )  cr .s  ;
-: show...  ( -- )  show wait  ;
+: wait ( -- ) key drop ;
+: show ( -- ) cr .s ;
+: show... ( -- ) show wait ;
 
- ' true alias [true]   immediate
-' false alias [false]  immediate
+ ' true alias [true]  immediate
+' false alias [false] immediate
 
-: period+  ( ca1 len1 -- ca2 len2 )  s" ." s+  ;
+: period+ ( ca1 len1 -- ca2 len2 ) s" ." s+ ;
   \ Add a full stop at the end of string _ca1 len1_.
 
-: comma+  ( ca1 len1 -- ca2 len2 )  s" ," s+  ;
+: comma+ ( ca1 len1 -- ca2 len2 ) s" ," s+ ;
   \ Add a comma at the end of string _ca1 len1_.
 
-\ }}} ==========================================================
-\ Vocabularies {{{
+\ ==============================================================
+\ Vocabularies {{{1
 
   \ XXX TODO use word lists instead
 
-vocabulary game-vocabulary      \ words of the game
-vocabulary player-vocabulary    \ words usable by the player
+vocabulary game-vocabulary \ words of the game
 
-\ vocabulary answer-vocabulary  \ answers to yes/no questions
+vocabulary player-vocabulary \ words usable by the player
+
+\ vocabulary answer-vocabulary \ answers to yes/no questions
   \ XXX TODO -- not used yet
 
-vocabulary menu-vocabulary      \ words of menu options
+vocabulary menu-vocabulary \ words of menu options
 
-: restore-vocabularies  ( -- )
-  only forth also game-vocabulary definitions  ;
+: restore-vocabularies ( -- )
+  only forth also game-vocabulary definitions ;
   \ Restore the normal search order.
 
 restore-vocabularies
 
-\ }}} ==========================================================
-\ Screen {{{
+\ ==============================================================
+\ Screen {{{1
 
-: last-col  ( -- u )  cols 1-  ;
-: last-row  ( -- u )  rows 1-  ;
+: last-col ( -- u ) cols 1- ;
+: last-row ( -- u ) rows 1- ;
 
-false  [if]
+false [if]
   \ XXX INFORMER:
   cr ." rows x cols = " rows . cols .
   cr ." last row = " last-row .
@@ -116,33 +117,33 @@ false  [if]
   wait
 [then]
 
-: no-window  ( -- )
-  [char] r trm+do-csi0  ;
-  \ Deactivate the screen zone as a window. 
+: no-window ( -- )
+  [char] r trm+do-csi0 ;
+  \ Deactivate the screen zone as a window.
 
-: output-window  ( -- )
-  last-row 1 - 1 trm+set-scroll-region  ;
+: output-window ( -- )
+  last-row 1 - 1 trm+set-scroll-region ;
   \ Select a screen zone (all rows except two at the bottom) as main output window.
-  \ Note: 
+  \ Note:
   \ For 'trm+set-scroll-region' first row is 1, while for Forth-94 it's 0.
 
-: at-first-output  ( -- )
-  0 last-row 2 - at-xy  ;
+: at-first-output ( -- )
+  0 last-row 2 - at-xy ;
   \ Set the cursor position where the first sentence will be printed
   \ (at the bottom of the screen).
 
-: init-output-cursor  ( -- )
+: init-output-cursor ( -- )
   output-window
   at-first-output trm+save-current-state
-  no-window  ;
+  no-window ;
 
-: at-input  ( -- )
-  0 last-row at-xy  ;
+: at-input ( -- )
+  0 last-row at-xy ;
   \ Set the cursor position at the input zone (last row).
   \ XXX OLD -- not used
 
-\ }}} ==========================================================
-\ Text output {{{
+\ ==============================================================
+\ Text output {{{1
 
 2 value /indentation
   \ Indentation of the first line of every paragraph.
@@ -150,102 +151,102 @@ false  [if]
 variable indent-first-line-too?
   \ Flag: Do indent also the first row?
 
-: not-first-line?  ( -- wf )
-  row 0>  ;
+: not-first-line? ( -- f )
+  row 0> ;
   \ Is the cursor not at the first row?
 
-: indentation?  ( -- wf )
-  not-first-line? indent-first-line-too? @ or  ;
+: indentation? ( -- f )
+  not-first-line? indent-first-line-too? @ or ;
   \ Do indent the current row?
 
-: (indent)  ( -- )
-  /indentation print_indentation  ;
+: (indent) ( -- )
+  /indentation print_indentation ;
   \ Indent.
 
-: indent  ( -- )
-  indentation? if  (indent)  then  ;
+: indent ( -- )
+  indentation? if (indent) then ;
   \ Indent if needed.
 
-: cr+  ( -- )
-  print_cr indent   ;
+: cr+ ( -- )
+  print_cr indent ;
 
-: paragraph  ( ca len -- )
-  cr+ print  ;
+: paragraph ( ca len -- )
+  cr+ print ;
   \ Print the paragraph _ca len_ justified.
 
-\ }}} ==========================================================
-\ Title {{{
+\ ==============================================================
+\ Title {{{1
 
-: title-row  ( col -- )
-  cr at-x  ;
+: title-row ( col -- )
+  cr at-x ;
   \ Do a carriage return and put the cursor at column _col_.
 
-: .title  ( -- )
+: .title ( -- )
   column
   ."   _" dup title-row
   ."  /_)    _)_ _ ( _  o  _   _   _   _ o  _" dup title-row
   ." / / (_( (_ (_) ) ) ( )_) ) ) (_) (  ( ("  dup title-row
-  ."                     (            _)   _)" title-row  ;
+  ."                     (            _)   _)" title-row ;
   \ Print the main title at the current cursor position.
 
 40 constant title-width
 4 constant title-height
 
-: margin  ( u1 u2 -- u3 )  - 2/  ;
+: margin ( u1 u2 -- u3 ) - 2/ ;
   \ Margin needed to center a text of _u1_ characters or rows on on a
   \ screen of _u2_ columns or rows.
 
-: .centered-title  ( -- )
+: .centered-title ( -- )
   cols title-width margin
   rows title-height margin
-  at-xy .title  ;
+  at-xy .title ;
   \ Print the title centered on the screen.
 
-: len>col  ( len -- col )  cols swap margin  ;
+: len>col ( len -- col ) cols swap margin ;
   \ Column needed to center a text of _len_ characters.
 
-: center-type  ( ca len -- )
-  dup len>col at-x type  ;
+: center-type ( ca len -- )
+  dup len>col at-x type ;
 
-: greeting  ( -- )
+: greeting ( -- )
   page
   s" Pulsa una tecla para empezar" center-type
-  .centered-title  ;
+  .centered-title ;
 
-\ }}} ==========================================================
-\ Data {{{
+\ ==============================================================
+\ Data {{{1
 
-variable #sentences  0 #sentences !
+variable #sentences 0 #sentences !
   \ number of sentences
 
 defer 'sentences
   \ table to hold the addresses of the sentences
 
-: >sentence>  ( u1 -- u2 )
-  #sentences @ swap -  ;
+: >sentence> ( u1 -- u2 )
+  #sentences @ swap - ;
   \ Convert the sentence ordinal number _u1_
   \ to its item number _u2_ in the sentences table.
 
-: 'sentence  ( u -- ca )
-  >sentence> cells 'sentences + @  ;
+: 'sentence ( u -- ca )
+  >sentence> cells 'sentences + @ ;
   \ Convert the sentence number _u_ to the sentence address _ca_.
 
-: sentence$  ( u -- ca len )
-  'sentence count  ;
+: sentence$ ( u -- ca len )
+  'sentence count ;
   \ Return the sentence _ca len_ whose ordinal number is _u_.
 
-: .sentence  ( u -- )
+: .sentence ( u -- )
   output-window trm+restore-current-state
   sentence$ paragraph trm+save-current-state
-  no-window  ;
+  no-window ;
   \ Print the sentence whose ordinal number is _u_.
 
-: hs,  ( ca len -- ca1 )
-  here rot rot s,  ;
+: hs, ( ca len -- ca1 )
+  here rot rot s, ;
   \ Compile a string _ca len_ and return its address _ca1_.
 
-: sentence:  ( ca len "name" -- ca1 )
-  hs,  #sentences 1 over +!  @ constant  ;
+: sentence: ( ca len "name" -- ca1 )
+  hs, #sentences 1 over +! @ constant ;
   \ Compile a sentence _ca len_, returning its address _ca1_;
   \ create a constant "name" that holds the sentence id (its
   \ ordinal number).
@@ -256,35 +257,35 @@ include autohipnosis_sentences.fs
 \ At this point, all sentences have been compiled and their addresses
 \ are on the stack. The variable `sentences#` holds the count.
 
-: sentences,  ( a1 ... an -- )
-  #sentences @ 0  ?do  ,  loop  ;
+: sentences, ( a1 ... an -- )
+  #sentences @ 0 ?do ,  loop ;
   \ Compile the addresses of the sentences.
   \ XXX FIXME -- check the colon-sys!
 
-create ('sentences)  ' ('sentences) is 'sentences
+create ('sentences) ' ('sentences) is 'sentences
   \ table to hold the addresses of the sentences
 
-sentences,  \ compile the data
+sentences, \ compile the data
 
-: associated?  ( u a | a u -- wf )
-  + c@ 0<>  ;
+: associated? ( u a | a u -- f )
+  + c@ 0<> ;
   \ Is a term whose body is _a_ associated to a sentence id _u_?
 
-: associate  ( u a -- )
-  + true swap c!  ;
+: associate ( u a -- )
+  + true swap c! ;
   \ Associate a sentence id _u_ to a term whose body is _a_.
 
-: execute-nt  ( i*x nt -- j*x )
-  name>int execute  ;
+: execute-nt ( i*x nt -- j*x )
+  name>int execute ;
   \ Execute the interpretation semantics of _nt_.
 
-: execute-latest  ( i*x -- j*x )
-  latest execute-nt  ;
+: execute-latest ( i*x -- j*x )
+  latest execute-nt ;
   \ Execute the interpretation behaviour of the most recent word
   \ defined.
 
-: update-term  ( u nt -- )
-  execute-nt  ( u a )  associate  ;
+: update-term ( u nt -- )
+  execute-nt ( u a ) associate ;
   \ Associate a term _nt_ to a sentence _u_.
 
 ' variable alias term
@@ -294,58 +295,56 @@ sentences,  \ compile the data
 \ ' create alias variablx \ XXX try
 \ XXX FIXME using 'create' instead of 'variable' causes an error
 
-: create-term-word  ( ca len -- )
-  nextname term  ;
+: create-term-word ( ca len -- )
+  nextname term ;
   \ Create a word for term _ca len_.
 
-: create-term-array  ( -- )
-  here #sentences @ dup allot align erase  ;
+: create-term-array ( -- )
+  here #sentences @ dup allot align erase ;
   \ Create the array that holds the sentence ids a term is
   \ associated to: one byte per every possible sentence.
 
-: create-term  ( ca len -- )
-  create-term-word create-term-array  ;
+: create-term ( ca len -- )
+  create-term-word create-term-array ;
   \ Create a term _ca len_, which will work as a variable but with a
   \ larger body: one byte for every defined sentence.
 
-: init-term  ( u -- )
-  execute-latest associate  ;
+: init-term ( u -- )
+  execute-latest associate ;
   \ Init the most recently created term, associating it to sentence
   \ _u_.
 
-: new-term  ( u ca len -- )
-  create-term init-term  ;
+: new-term ( u ca len -- )
+  create-term init-term ;
   \ Create a new term _ca len_ and associate it to sentence _u_.
 
-: another-term  ( u ca len -- )
-  2dup find-name  ?dup
-  if  nip nip update-term  else  new-term  then  ;
+: another-term ( u ca len -- )
+  2dup find-name ?dup
+  if nip nip update-term else new-term then ;
   \ Create or update a term _ca len_ associated to a sentence _u_.
 
-: parse-term  ( "name" -- ca len )
-  begin   parse-name dup 0=
-  while   2drop refill 0= abort" Error en el código fuente: falta un '}terms'"
-  repeat  ;
+: parse-term ( "name" -- ca len )
+  begin  parse-name dup 0=
+  while  2drop refill 0= abort" Error en el código fuente: falta un '}terms'"
+  repeat ;
   \ Parse the next term.
 
-: another-term?  ( "name" -- ca len f )
-  parse-term 2dup s" }terms" compare  ;
+: another-term? ( "name" -- ca len f )
+  parse-term 2dup s" }terms" compare ;
   \ Is there another term in the list?  Parse a word and check if it's
   \ the last term associated to a sentence. Return the parsed word _ca
   \ len_; _f_ is true if it's not te end of the list.
 
-: terms{  ( u "name#0" ... "name#n" "}terms" -- )
+: terms{ ( u "name#0" ... "name#n" "}terms" -- )
   only game-vocabulary also player-vocabulary definitions
 \  assert( depth 1 = ) \ XXX INFORMER
-  begin
-    dup another-term? ( u u a1 u1 f )
+  begin  dup another-term? ( u u a1 u1 f )
 \    assert( depth 5 = ) \ XXX INFORMER
-  while   another-term
+  while  another-term
 \    assert( depth 1 = ) \ XXX INFORMER
   repeat
 \  assert( depth 4 = ) \ XXX INFORMER
-  2drop 2drop
-  restore-vocabularies  ;
+  2drop 2drop restore-vocabularies ;
   \ Create or update words associated to a sentence _u_.
 
 include autohipnosis_terms.fs
@@ -355,121 +354,121 @@ include autohipnosis_terms.fs
 
 also player-vocabulary definitions
 
-: #fin ( -- )
+: #fin ( -- ) ;
   \ XXX TODO
-  ;
 
 restore-vocabularies
 
-\ }}} ==========================================================
-\ Command interpreter {{{
+\ ==============================================================
+\ Command interpreter {{{1
 
-variable sentence#  \ current sentence
-variable valid      \ counter: valid terms per command
+variable sentence# \ current sentence
 
-: valid++  (  a -- )
-  sentence# @ associated? abs valid +!  ;
+variable valid     \ counter: valid terms per command
+
+: valid++ ( a -- )
+  sentence# @ associated? abs valid +! ;
   \ Update the score. _a_ is the body of a term associated to a
   \ sentence.
 
-: execute-term  ( nt -- )
-  execute-nt  ( a ) valid++  ;
+: execute-term ( nt -- )
+  execute-nt ( a ) valid++ ;
   \ Execute a term _nt_ associated to a sentence.
 
-: (evaluate-command)  ( -- )
-  begin   parse-name ?dup
-  while   find-name ?dup if  execute-term  then
-  repeat  drop  ;
+: (evaluate-command) ( -- )
+  begin  parse-name ?dup
+  while  find-name ?dup if execute-term then
+  repeat drop ;
   \ Parse the source with the current search order:
   \ words recognized will be executed as terms associated to a
   \ sentence.
 
-: evaluate-command  ( ca len -- )
+: evaluate-command ( ca len -- )
   only player-vocabulary
   ['] (evaluate-command) execute-parsing
-  restore-vocabularies  ;
+  restore-vocabularies ;
   \ Evaluate the string _ca len_ using the player word list.
 
 variable testing
 
-: valid?  ( ca len -- wf )
-  valid off  evaluate-command  valid @ 0<>
-  testing @ or  ;
+: valid? ( ca len -- f )
+  valid off evaluate-command valid @ 0<>
+  testing @ or ;
   \ Does the string _ca len_ contain a term associated to the
   \ current sentence?
 
-: prompt$  ( -- ca len )
-  s" > "  ;
+: prompt$ ( -- ca len )
+  s" > " ;
 
-: /command  ( -- u )
-  cols prompt$ nip - 1-  ;
+: /command ( -- u )
+  cols prompt$ nip - 1- ;
   \ Maximum length of a command.
 
-: init-command-line  ( -- )
-  0 last-row at-xy trm+erase-line  ;
+: init-command-line ( -- )
+  0 last-row at-xy trm+erase-line ;
   \ Clear the command line and set the cursor position.
 
 create 'command /command chars allot align
 
-: (command)  ( -- ca len )
-  'command /command accept  'command swap  ;
+: (command) ( -- ca len )
+  'command /command accept 'command swap ;
   \ Accept a player command.
 
-: .prompt  ( -- )
-  prompt$ type  ;
+: .prompt ( -- )
+  prompt$ type ;
 
-: command  ( -- ca len )
-  init-command-line .prompt (command)  ;
+: command ( -- ca len )
+  init-command-line .prompt (command) ;
   \ Init the screen and accept a player command.
 
-\ }}} ==========================================================
-\ The end {{{
+\ ==============================================================
+\ The end {{{1
 
-variable success?  \ flag
+variable success? \ flag
 
-: happy-end  ( -- )
-  success? on  ;
+: happy-end ( -- )
+  success? on ;
   \ XXX TODO
 
-\ }}} ==========================================================
-\ Help {{{
+\ ==============================================================
+\ Help {{{1
 
-: curiosities  ( -- )
-  s" Curiosidades..." paragraph  ;
+: curiosities ( -- )
+  s" Curiosidades..." paragraph ;
   \ XXX TODO
 
-: game$  ( -- ca len )
-  \ s{ s" juego" s" programa" }s  ;  \ XXX OLD
-  s" programa"  ;
+: game$ ( -- ca len )
+  \ s{ s" juego" s" programa" }s ; \ XXX OLD
+  s" programa" ;
 
-: the-game$  ( -- ca len )
-  s" el" game$ s&  ;
+: the-game$ ( -- ca len )
+  s" el" game$ s& ;
 
-: except$  ( -- ca len )
-  s{ s" excepto" s" salvo" }s  ;
+: except$ ( -- ca len )
+  s{ s" excepto" s" salvo" }s ;
 
-: way$  ( -- ca len )
-  s{ s" manera" s" forma" }s  ;
+: way$ ( -- ca len )
+  s{ s" manera" s" forma" }s ;
 
-: leave$  ( -- ca len )
-  s{ s" abandonar" s" detener" s" dejar" s" interrumpir" }s  ;
+: leave$ ( -- ca len )
+  s{ s" abandonar" s" detener" s" dejar" s" interrumpir" }s ;
 
-: left$  ( -- ca len )
-  s{ s" abandonado" s" detenido" s" dejado" s" interrumpido" }s  ;
+: left$ ( -- ca len )
+  s{ s" abandonado" s" detenido" s" dejado" s" interrumpido" }s ;
 
-: pressing$  ( -- ca len )
-  s{ s" pulsando" s" mediante" }s  ;
+: pressing$ ( -- ca len )
+  s{ s" pulsando" s" mediante" }s ;
 
-: they-make$  ( -- ca len )
-  s{ s" forman" s" componen" }s  ;
+: they-make$ ( -- ca len )
+  s{ s" forman" s" componen" }s ;
 
-: instructions-0  ( -- )
+: instructions-0 ( -- )
   s{ s" El" s" Este" }s game$ s&
   s{ s" mostrará" s" imprimirá" }s bs&
   s" un texto" s& s" en la pantalla" 50%nullify bs&
   s" y" s&
   s{ s" a continuación" s" después" s" seguidamente" }s 50%nullify bs&
-  s{ s" esperará" s" se quedará esperando" }s bs&  s" una respuesta." s&
+  s{ s" esperará" s" se quedará esperando" }s bs& s" una respuesta." s&
   s{
     \ s" El" s{ s" juego" s" objetivo" }s bs& s" consiste en" s& \ XXX OLD
     s" El objetivo consiste en"
@@ -494,15 +493,15 @@ variable success?  \ flag
   s{ s" del" s" de dicho" }s s" texto" s&
   }s bs& period+
   s" El proceso" s&
-  s{  s" se repetirá" s" continuará"
+  s{ s" se repetirá" s" continuará"
       s" no acabará" s" no terminará"
       s" seguirá" s" durará"
   }s bs&
   s" hasta que todos los textos hayan sido mostrados y respondidos." s&
-  paragraph  ;
+  paragraph ;
   \ Instructions on the game goal.
 
-: instructions-1  ( -- )
+: instructions-1 ( -- )
   s{
   s" No es posible" leave$ s& the-game$ s& comma+ except$ s& pressing$ s&
   s" El" game$ s& s" no puede ser" s& left$ s& comma+ except$ s& pressing$ s&
@@ -514,11 +513,11 @@ variable success?  \ flag
   s{ s" devolverá" s" hará regresar" }s bs&
   s{ s" a la línea de comandos" s" al intérprete" }s bs&
   s" de Forth." s&
-  paragraph  ;
+  paragraph ;
   \ Instructions on leaving the game.
   \ XXX FIXME -- Ctrl+C return to the OS shell
 
-: instructions-2  ( -- )
+: instructions-2 ( -- )
   s" Tanto para empezar a jugar ahora como para hacerlo tras haber"
   left$ s& the-game$ s&
   s" puedes" s& s{ s" usar" s" probar" }s bs&
@@ -527,111 +526,111 @@ variable success?  \ flag
   s{ s" encontrar" s" dar con" s" acertar con" }s bs&
   s{ s" alguna" s" una" }s bs& s" que" s&
   s{ s" surta efecto" s" funcione" s" sirva" }s bs& period+
-  paragraph  ;
+  paragraph ;
   \ Intructions on the game start.
 
-: instructions  ( -- false )
+: instructions ( -- false )
   \ page s" Instrucciones de Autohipnosis" paragraph cr cr
-  page instructions-0 instructions-1 instructions-2  false  ;
+  page instructions-0 instructions-1 instructions-2 false ;
   \ XXX TODO
 
-\ }}} ==========================================================
-\ Menu {{{
+\ ==============================================================
+\ Menu {{{1
 
-: menu-0$  ( -- ca len )
+: menu-0$ ( -- ca len )
   s" Qué"
   s{ s{ s" quieres" s" deseas" }s s" hacer" 50%nullify bs&
-  s" ordenas" }s bs&  ;
+  s" ordenas" }s bs& ;
   \ First version of the menu text.
 
-: menu-1$  ( -- ca len )
+: menu-1$ ( -- ca len )
   s" Cuáles son tus"
-  s{ s" órdenes" s" instrucciones" }s bs&  ;
+  s{ s" órdenes" s" instrucciones" }s bs& ;
   \ Second version of the menu text.
 
-: menu$  ( -- ca len )
-  s" ¿" s{ menu-0$ menu-1$ }s bs+ s" ?" s+  ;
+: menu$ ( -- ca len )
+  s" ¿" s{ menu-0$ menu-1$ }s bs+ s" ?" s+ ;
   \ Menu text.
 
-: .menu  ( -- )
-  menu$ key? drop paragraph  ;
+: .menu ( -- )
+  menu$ key? drop paragraph ;
   \ Print the menu.
   \ XXX FIXME -- Somehow `key? drop` prevents some control chars
   \ from appearing.
 
-: (evaluate-option)  ( -- )
-  begin   parse-name ?dup
-  while   find-name ?dup   if  execute-nt  then
-  repeat  drop  ;
+: (evaluate-option) ( -- )
+  begin  parse-name ?dup
+  while  find-name ?dup if execute-nt then
+  repeat drop ;
   \ Parse the current source, executing only the recognized
   \ words.
 
-: evaluate-option  ( ca len -- )
+: evaluate-option ( ca len -- )
   only menu-vocabulary
   ['] (evaluate-option) execute-parsing
-  restore-vocabularies  ;
+  restore-vocabularies ;
   \ Evaluate a menu option _ca len_.
 
-variable finished  \ flag: quit the program?
+variable finished \ flag: quit the program?
 
-: finish  ( -- )
-  finished on  ;
+: finish ( -- )
+  finished on ;
 
-: menu  ( -- wf )
-  finished off  .menu command evaluate-option finished @  ;
+: menu ( -- f )
+  finished off .menu command evaluate-option finished @ ;
   \ Show the menu and execute an option. Return _true_
   \ if the player wants to quit.
 
-\ }}} ==========================================================
-\ Init {{{
+\ ==============================================================
+\ Init {{{1
 
-: init-once  ( -- )
-  page greeting 20 seconds  instructions drop  ;
+: init-once ( -- )
+  page greeting 20 seconds instructions drop ;
   \ Init needed only once.
 
-: init-game  ( -- )
-  init-output-cursor  page  ;
+: init-game ( -- )
+  init-output-cursor page ;
   \ Init needed before every game.
 
-\ }}} ==========================================================
-\ Game {{{
+\ ==============================================================
+\ Game {{{1
 
-: ask  ( u -- )
-  sentence# !  begin  command  valid?  until  ;
+: ask ( u -- )
+  sentence# ! begin command valid? until ;
   \ Ask the player for a command for the sentence number _u_,
   \ until a valid command is receceived.
 
-: step  ( u -- )
-  dup .sentence ask  ;
+: step ( u -- )
+  dup .sentence ask ;
   \ One step of the game. _u_ is the number of the current sentence.
 
-: game  ( -- )
+: game ( -- )
   #sentences @ dup 1
-  do  i step  loop
-  .sentence  \ final sentence
-  happy-end  ;
+  do i step loop
+  .sentence \ final sentence
+  happy-end ;
 
-: play  ( -- )
-  init-game game   ;
+: play ( -- )
+  init-game game ;
 
-\ }}} ==========================================================
-\ Main {{{
+\ ==============================================================
+\ Main {{{1
 
-: farewell$  ( -- ca len )
-  s{  s" Adiós"
-      s" Hasta" s{ s" otra" s" la vista" s" pronto" s" luego" s" más ver" }s bs&
-  }s  period+  ;
+: farewell$ ( -- ca len )
+  s{ s" Adiós"
+     s" Hasta" s{ s" otra" s" la vista" s" pronto" s" luego" s" más ver" }s bs&
+  }s period+ ;
 
-: farewell  ( -- )
-  page farewell$ paragraph space 2 seconds bye  ;
+: farewell ( -- )
+  page farewell$ paragraph space 2 seconds bye ;
 
 : main ( -- )
   init-once
-  begin  menu  until  farewell  ;
+  begin menu until farewell ;
   \ Main loop.
 
-\ }}} ==========================================================
-\ Menu commands {{{
+\ ==============================================================
+\ Menu commands {{{1
 
 \ There are only three menu commands, with many synonyms.
 
@@ -821,15 +820,15 @@ also menu-vocabulary definitions
 
 restore-vocabularies
 
-\ }}} ==========================================================
-\ Debug tools {{{
+\ ==============================================================
+\ Debug tools {{{1
 
 true [if]
 
-: .sentences  ( a -- )
+: .sentences ( a -- )
   cr #sentences @ 0 ?do
-    dup i + c@ if  i sentence$ type cr  then
-  loop  drop  ;
+    dup i + c@ if i sentence$ type cr then
+  loop drop ;
   \ Print all sentences associated to term hold in address _a_.
   \ Usage examples:
   \   also player-vocabulary
@@ -844,7 +843,7 @@ restore-vocabularies
 
 [then]
 
-\ }}} ==========================================================
+\ ==============================================================
 \ Boot
 
 ' noop is dobacktrace

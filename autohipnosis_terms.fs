@@ -6,7 +6,7 @@
 
 \ http://programandala.net/es.programa.autohipnosis
 
-\ Copyright (C) 2012,2015 Marcos Cruz (programandala.net)
+\ Copyright (C) 2012,2015,2017 Marcos Cruz (programandala.net)
 
 \ You may do whatever you want with this work, so long as you
 \ retain the copyright notice(s) and this license in all
@@ -19,7 +19,7 @@ posibilidad postura situación situaciÓn gesto actitud satisfacción satisfacci
 }terms
 
 «puedescerr» terms{
-capacidad poder posibilidad 
+capacidad poder posibilidad
 ocultamiento encubrimiento obstrucción obstrucciÓn
 apagón apagÓn ceguera ciego oscuridad niebla
 párpado
@@ -64,7 +64,7 @@ comodidad confort descanso placer gozo goce satisfacción satisfacciÓn disfrute
 «vasaflojan» terms{
 desplazamiento progreso progresión progresiÓn camino dirección direcciÓn sentido evolución evoluciÓn transformación transformaciÓn trasformación trasformaciÓn
 laxitud abandono flojera
-debilidad relajación relajaciÓn relax blandura calma paz tranquilidad quietud 
+debilidad relajación relajaciÓn relax blandura calma paz tranquilidad quietud
 poder motor agente causa fuerza energía energÍa masa movimiento trabajo potencia
 }terms
 
@@ -78,7 +78,7 @@ transporte trasporte porte llegada venida
 
 «teestatray» terms{
 aporte aportación aportaciÓn regalo donación donaciÓn donativo dádiva dÁdiva entrega
-transporte trasporte viaje 
+transporte trasporte viaje
 sentimiento percepción percepciÓn intucición intuciciÓn emoción emociÓn
 comodidad confort placer gozo goce satisfacción satisfacciÓn disfrute
 }terms
@@ -98,13 +98,13 @@ laxitud abandono flojera debilidad relajación relajaciÓn relax blandura calma 
 }terms
 
 «ahoranonec» terms{
-momento instante sazón sazÓn presente presencia contemporaneidad actualidad 
+momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 requisito conveniencia posibilidad capacidad obligación obligaciÓn menester
 conciencia consciencia presencia descanso
 alarma atención atenciÓn concentración concentraciÓn vigilancia cuidado estrés tensión
 }terms
 
-«nonecesita» terms{ 
+«nonecesita» terms{
 requisito conveniencia posibilidad capacidad obligación obligaciÓn menester
 alarma alerta atención atenciÓn concentración concentraciÓn vigilancia cuidado estrés
 }terms
@@ -142,12 +142,12 @@ identidad
 velocidad lentitud paso
 }terms
 
-«pocoapoco» terms{ 
+«pocoapoco» terms{
 lentitud paso paciencia constancia
 calma paz tranquilidad sosiego
 }terms
 
-«notacomova» terms{ 
+«notacomova» terms{
 sensación sensaciÓn percepción percepciÓn
 transformación transformaciÓn trasformación trasformaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis
 lentitud rapidez deceleración deceleraciÓn medida prisa
@@ -194,7 +194,7 @@ crisis mutación mutaciÓn transformación transformaciÓn trasformación trasfo
 situación situaciÓn brete
 importancia gravedad
 introducción introducciÓn puerta penetración penetraciÓn
-intensidad 
+intensidad
 }terms
 
 «permiteaho» terms{
@@ -209,7 +209,7 @@ cerebro cabeza pensamiento
 manera camino método mÉtodo
 aire soplo soplido aliento
 movimiento
-porte traslado transporte trasporte viaje 
+porte traslado transporte trasporte viaje
 }terms
 
 «losresiduo» terms{
@@ -221,7 +221,7 @@ ciclo reciclaje recurso limpieza
 laxitud abandono flojera relajación relajaciÓn relax calma paz quietud
 crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio progreso
 situación situaciÓn brete
-porte traslado transporte trasporte viaje 
+porte traslado transporte trasporte viaje
 momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 }terms
 
@@ -248,10 +248,10 @@ cabeza imaginación imaginaciÓn pasado inspiración inspiraciÓn pensamiento id
 voluntad deseo concentración concentraciÓn posesión posesiÓn
 }terms
 
-«sinoparaes» terms{ 
+«sinoparaes» terms{
 destino objeto objetivo destinatario
 lugar ubicación ubicaciÓn
-inconsciente consciencia conciencia 
+inconsciente consciencia conciencia
 yo ser identidad
 }terms
 
@@ -294,7 +294,7 @@ cuerda viento sentido escucha partitura
 
 «consensaci» terms{
 percepción percepciÓn sentido emoción emociÓn sentimiento
-cuerpo 
+cuerpo
 }terms
 
 «conperfume» terms{
@@ -310,7 +310,7 @@ amargura dulzura acidez
 crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio progreso
 situación situaciÓn brete
 verdad efectividad
-placer gozo goce disfrute 
+placer gozo goce disfrute
 }terms
 
 «untrancequ1» terms{
@@ -331,8 +331,8 @@ subconsciente
 lentitud paso paciencia constancia
 calma paz tranquilidad sosiego quietud
 continuación continuaciÓn duración duraciÓn
-desplazamiento progreso progresión progresiÓn camino dirección direcciÓn sentido evolución evoluciÓn 
-crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio 
+desplazamiento progreso progresión progresiÓn camino dirección direcciÓn sentido evolución evoluciÓn
+crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio
 situación situaciÓn brete
 }terms
 
@@ -381,7 +381,7 @@ superficie continente aspecto apariencia
 }terms
 
 «tuinconsc2» terms{
-mente cabeza cerebro pensamiento 
+mente cabeza cerebro pensamiento
 crisis mutación mutaciÓn transformación transformaciÓn trasformación trasformaciÓn cambio progreso
 percepción percepciÓn cuerpo sentido
 }terms
@@ -445,7 +445,7 @@ importancia gravedad interior puerta penetración penetraciÓn
 
 «cadavezmas» terms{
 tiempo velocidad tamaño tamaÑo
-evolución evoluciÓn progreso crecimiento 
+evolución evoluciÓn progreso crecimiento
 importancia gravedad interior puerta penetración penetraciÓn
 }terms
 
@@ -487,7 +487,7 @@ aprendizaje aprehendizaje familiaridad repetición repeticiÓn recuerdo memoria
 «perolomasi» terms{
 gravedad trascendencia
 permiso licencia paso concesión concesiÓn
-vuelo aire 
+vuelo aire
 río rÍo agua corriente camino
 }terms
 
@@ -535,13 +535,13 @@ vuelo aire levitación levitaciÓn subida ascenso ligereza
 
 «oquizadelo» terms{
 posibilidad probabilidad decisión decisiÓn
-oposición oposiciÓn negación negaciÓn oponente antagonista 
+oposición oposiciÓn negación negaciÓn oponente antagonista
 }terms
 
 «depercibir» terms{
 sensación sensaciÓn percepción percepciÓn
 peso volumen densidad contacto descenso apoyo superficie
-comodidad confort descanso 
+comodidad confort descanso
 }terms
 
 «enelsillon» terms{
@@ -572,7 +572,7 @@ ventaja provecho beneficio fruto
 
 «dejatellev» terms{
 posibilidad permiso licencia concesión concesiÓn
-transporte trasporte viaje traslado 
+transporte trasporte viaje traslado
 lugar ubicación ubicaciÓn destino movimiento
 incremento aumento progreso progresión progresiÓn
 momento instante sazón sazÓn presente presencia contemporaneidad actualidad
@@ -600,10 +600,10 @@ todo paso pie descenso bajada
 }terms
 
 «nosvacondu» terms{
-transporte trasporte viaje 
-desplazamiento camino dirección direcciÓn sentido 
+transporte trasporte viaje
+desplazamiento camino dirección direcciÓn sentido
 introducción introducciÓn puerta penetración penetraciÓn hundimiento
-incremento aumento crecimiento desarrollo 
+incremento aumento crecimiento desarrollo
 }terms
 
 «yvamosairc» terms{
@@ -661,7 +661,7 @@ paso escalón escalÓn decena otro descenso bajada
 
 «esuntrance» terms{
 transformación transformaciÓn trasformación trasformaciÓn evolución evoluciÓn progreso crecimiento modificación modificaciÓn crisis
-incremento aumento crecimiento desarrollo 
+incremento aumento crecimiento desarrollo
 importancia gravedad
 momento instante sazón sazÓn presente presencia contemporaneidad actualidad
 }terms
@@ -701,7 +701,7 @@ consejo aviso receta lema mantra máxima mÁxima
 «ideasposit» terms{
 mente imaginación imaginaciÓn pensamiento creatividad
 ventaja provecho beneficio fruto
-intensidad importancia fundamento 
+intensidad importancia fundamento
 entrada puerta penetración penetraciÓn hundimiento filtración filtraciÓn contagio fusión fusiÓn
 cerebro
 }terms
@@ -723,7 +723,7 @@ consejo aviso receta lema mantra máxima mÁxima
 
 «yahoravoya» terms{
 momento instante sazón sazÓn presente presencia contemporaneidad actualidad
-oído oÍdo oreja vibración vibraciÓn aire onda 
+oído oÍdo oreja vibración vibraciÓn aire onda
 sentido escucha
 calma paz quietud
 motivo porqué porquÉ objeto objetivo razón razÓn
@@ -753,7 +753,7 @@ consejo aviso receta lema mantra máxima mÁxima
 «todasycada» terms{
 todo conjunto grupo total
 memoria recuerdo permanencia preservación preservaciÓn
-adquisición adquisiciÓn apropiación apropiaciÓn aprendizaje aprehendizaje 
+adquisición adquisiciÓn apropiación apropiaciÓn aprendizaje aprehendizaje
 interior
 cerebro pensamiento imaginación imaginaciÓn
 subconsciente
@@ -768,7 +768,7 @@ fin conclusión conclusiÓn término tÉrmino
 huida escape
 situación situaciÓn ocasión ocasiÓn brete circunstancia experiencia
 regreso vuelta retorno
-momento instante sazón sazÓn 
+momento instante sazón sazÓn
 deseo querencia gusto
 }terms
 
@@ -780,7 +780,7 @@ sorpresa progreso evolución evoluciÓn cambio transformación transformaciÓn t
 }terms
 
 «maspotente» terms{
-incremento aumento crecimiento desarrollo 
+incremento aumento crecimiento desarrollo
 capacidad posibilidad cualidad efectividad fortaleza fuerza
 }terms
 

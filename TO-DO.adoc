@@ -1,5 +1,5 @@
 = Autohipnosis TO-DO
-:revdate: 2017-08-07
+:revdate: 2017-08-18
 
 == 2016-01-14
 
@@ -9,3 +9,6 @@ Deactivate the tab completion.
 
 Ask for confirmation exit, pressing the space bar.
 
+== 2017-08-18
+
+Replace `print` with `ltype`.
