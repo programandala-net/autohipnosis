@@ -5,7 +5,7 @@
 \ This is the main file of «Autohipnosis»,
 \ an experimental interactive fiction in Spanish.
 
-\ Version 0.3.0+201708182048
+\ Version 0.4.0+201708182101
 
 \ http://programandala.net/es.programa.autohipnosis
 
@@ -52,7 +52,7 @@ require ffl/trm.fs
 require galope/at-x.fs                  \ 'at-x'
 require galope/column.fs                \ 'column'
 require galope/fifty-percent-nullify.fs \ `50%nullify`
-require galope/print.fs                 \ justified print
+require galope/l-type.fs                \ `ltype`, `/ltype`
 require galope/s-curly-bracket.fs       \ `s{`, `}s`.
 require galope/s-plus.fs                \ 's+'
 require galope/randomize.fs             \ 'randomize'
@@ -143,38 +143,6 @@ false [if]
   \ XXX OLD -- not used
 
 \ ==============================================================
-\ Text output {{{1
-
-2 value /indentation
-  \ Indentation of the first line of every paragraph.
-
-variable indent-first-line-too?
-  \ Flag: Do indent also the first row?
-
-: not-first-line? ( -- f )
-  row 0> ;
-  \ Is the cursor not at the first row?
-
-: indentation? ( -- f )
-  not-first-line? indent-first-line-too? @ or ;
-  \ Do indent the current row?
-
-: (indent) ( -- )
-  /indentation print_indentation ;
-  \ Indent.
-
-: indent ( -- )
-  indentation? if (indent) then ;
-  \ Indent if needed.
-
-: cr+ ( -- )
-  print_cr indent ;
-
-: paragraph ( ca len -- )
-  cr+ print ;
-  \ Print the paragraph _ca len_ justified.
-
-\ ==============================================================
 \ Title {{{1
 
 : title-row ( col -- )
@@ -237,7 +205,7 @@ defer 'sentences
 
 : .sentence ( u -- )
   output-window trm+restore-current-state
-  sentence$ paragraph trm+save-current-state
+  sentence$ /ltype trm+save-current-state
   no-window ;
   \ Print the sentence whose ordinal number is _u_.
 
@@ -434,7 +402,7 @@ variable success? \ flag
 \ Help {{{1
 
 : curiosities ( -- )
-  s" Curiosidades..." paragraph ;
+  s" Curiosidades..." /ltype ;
   \ XXX TODO
 
 : game$ ( -- ca len )
@@ -498,7 +466,7 @@ variable success? \ flag
       s" seguirá" s" durará"
   }s bs&
   s" hasta que todos los textos hayan sido mostrados y respondidos." s&
-  paragraph ;
+  /ltype ;
   \ Instructions on the game goal.
 
 : instructions-1 ( -- )
@@ -513,7 +481,7 @@ variable success? \ flag
   s{ s" devolverá" s" hará regresar" }s bs&
   s{ s" a la línea de comandos" s" al intérprete" }s bs&
   s" de Forth." s&
-  paragraph ;
+  /ltype ;
   \ Instructions on leaving the game.
   \ XXX FIXME -- Ctrl+C return to the OS shell
 
@@ -526,11 +494,11 @@ variable success? \ flag
   s{ s" encontrar" s" dar con" s" acertar con" }s bs&
   s{ s" alguna" s" una" }s bs& s" que" s&
   s{ s" surta efecto" s" funcione" s" sirva" }s bs& period+
-  paragraph ;
+  /ltype ;
   \ Intructions on the game start.
 
 : instructions ( -- false )
-  \ page s" Instrucciones de Autohipnosis" paragraph cr cr
+  \ page s" Instrucciones de Autohipnosis" /ltype cr cr
   page instructions-0 instructions-1 instructions-2 false ;
   \ XXX TODO
 
@@ -553,7 +521,7 @@ variable success? \ flag
   \ Menu text.
 
 : .menu ( -- )
-  menu$ key? drop paragraph ;
+  menu$ key? drop /ltype ;
   \ Print the menu.
   \ XXX FIXME -- Somehow `key? drop` prevents some control chars
   \ from appearing.
@@ -622,7 +590,7 @@ variable finished \ flag: quit the program?
   }s period+ ;
 
 : farewell ( -- )
-  page farewell$ paragraph space 2 seconds bye ;
+  page farewell$ /ltype space 2 seconds bye ;
 
 : main ( -- )
   init-once
