@@ -5,14 +5,14 @@
 \ This is the main file of «Autohipnosis»,
 \ an experimental interactive fiction in Spanish.
 
-\ Version 0.2.0+201607221228
+\ Version 0.3.0+201708182027
 
 \ http://programandala.net/es.programa.autohipnosis
 
 \ }}} ==========================================================
 \ Author and License {{{
 
-\ Author: Marcos Cruz (programandala.net), 2012, 2015, 2016
+\ Author: Marcos Cruz (programandala.net), 2012, 2015, 2016, 2017.
 
 \ You may do whatever you want with this work, so long as you retain
 \ the copyright/authorship/acknowledgment/credit notice(s) and this
@@ -53,7 +53,8 @@ require galope/at-x.fs                    \ 'at-x'
 require galope/column.fs                  \ 'column'
 require galope/fifty-percent-nullify.fs   \ `50%nullify`
 require galope/print.fs                   \ justified print
-require galope/random_strings.fs          \ random strings
+require galope/s-curly-bracket.fs         \ `s{`, `}s`.
+require galope/s-plus.fs                  \ 's+'
 require galope/randomize.fs               \ 'randomize'
 require galope/row.fs                     \ 'row'
 require galope/sb.fs                      \ circular string buffer
@@ -467,7 +468,7 @@ variable success?  \ flag
   s{ s" mostrará" s" imprimirá" }s bs&
   s" un texto" s& s" en la pantalla" 50%nullify bs&
   s" y" s&
-  s{ s" a continuación" s" después" s" seguidamente" }s? bs&
+  s{ s" a continuación" s" después" s" seguidamente" }s 50%nullify bs&
   s{ s" esperará" s" se quedará esperando" }s bs&  s" una respuesta." s&
   s{
     \ s" El" s{ s" juego" s" objetivo" }s bs& s" consiste en" s& \ XXX OLD
@@ -852,6 +853,6 @@ restore-vocabularies
 ' main alias autohipnosis
   \ Just to force "autohipnosis" to be shown after a break.
 
-\ autohipnosis
+autohipnosis
 
-\ vim: filetype:gforth foldmethod:marker
+\ vim: filetype=gforth foldmethod=marker
