@@ -1,5 +1,5 @@
 = Autohipnosis TO-DO
-:revdate: 2017-08-18
+:revdate: 2017-11-30
 
 == 2016-01-14
 
@@ -9,6 +9,7 @@ Deactivate the tab completion.
 
 Ask for confirmation exit, pressing the space bar.
 
-== 2017-08-18
+== 2017-11-30
 
-Replace `print` with `ltype`.
+- Update note about Ctrl+C.
+- New terms: "relax", "relajación"...
