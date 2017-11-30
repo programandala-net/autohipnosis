@@ -1,0 +1,3 @@
+*.fs linguist-language=Forth
+
+# vim: filetype=config
