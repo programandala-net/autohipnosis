@@ -1,13 +1,33 @@
 = Autohipnosis
-:revdate: 2016-07-20
+:author: Marcos Cruz (programandala.net)
+:revdate: 2017-11-30
 
-_Autohipnosis_ is an experimental text based game, in Spanish, written
-in http://forth-standard.org[Forth] with
+<<en,In English>> below.
+
+== [[es]]Español
+
+_Autohipnosis_ es un juego de ficción interactiva, experimental,
+escrito en http://forth-standard.org[Forth] para
+http://gnu.org/software/gforth[Gforth].
+
+El proyecto empezó en 2011-12-13. En 2016-07-20 se creó un repositorio
+de Git, a partir de las copias de respaldo realizadas durante el
+desarrollo, con el fin de preservar la evolución del código y
+continuar el desarrollo.
+
+La sede del proyecto es
+<http://programandala.net/es.programa.autohipnosis.html>.
+
+== [[en]]English
+
+_Autohipnosis_ (in English, self-hypnosis) is an experimental
+interactive fiction game, in Spanish, written in
+http://forth-standard.org[Forth] for
 http://gnu.org/software/gforth[Gforth].
 
 The project started on 2011-12-13.  On 2016-07-20 a Git repository was
-created from the development backups, in order to resume the
-development.
+created from the development backups, in order to preserve the
+evolution of the source and to resume the development.
 
 The home page of the project is
 <http://programandala.net/es.programa.autohipnosis.html>
