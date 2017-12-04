@@ -5,7 +5,7 @@
 \ This is the main file of «Autohipnosis»,
 \ an experimental interactive fiction in Spanish.
 
-\ Version 0.5.0+201708182104
+\ Version 0.6.0+201712041643
 
 \ http://programandala.net/es.programa.autohipnosis
 
@@ -58,7 +58,7 @@ require galope/s-plus.fs                \ 's+'
 require galope/randomize.fs             \ 'randomize'
 require galope/row.fs                   \ 'row'
 require galope/sb.fs                    \ circular string buffer
-require galope/seconds.fs               \ 'seconds'
+require galope/question-seconds.fs      \ '?seconds'
 require galope/two-drops.fs             \ '2drops'
 require galope/xy.fs                    \ 'xy'
 
@@ -553,7 +553,7 @@ variable finished \ flag: quit the program?
 \ Init {{{1
 
 : init-once ( -- )
-  page greeting 20 seconds instructions drop ;
+  page greeting 20 ?seconds instructions drop ;
   \ Init needed only once.
 
 : init-game ( -- )
@@ -590,7 +590,7 @@ variable finished \ flag: quit the program?
   }s period+ ;
 
 : farewell ( -- )
-  page farewell$ /ltype space 2 seconds bye ;
+  page farewell$ /ltype space 2 ?seconds bye ;
 
 : main ( -- )
   init-once
