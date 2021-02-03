@@ -1,5 +1,5 @@
 = Autohipnosis TO-DO
-:revdate: 2017-11-30
+:revdate: 2018-07-22
 
 == 2016-01-14
 
@@ -13,3 +13,8 @@ Ask for confirmation exit, pressing the space bar.
 
 - Update note about Ctrl+C.
 - New terms: "relax", "relajación"...
+
+== 2018-07-22
+
+- Use Galope's `xlowercase` and remove the uppercase variants of terms
+  that include non-ASCII characters.
